@@ -118,50 +118,14 @@ footer {
     left: 20px;
     transform: translateY(-50%);
     background-color: #7FB1C8;
-    color: #F4E6CB;
-    font-family: 'BasicChoice', sans-serif;
-    font-size: 1.5rem; /* Unidade relativa */
     padding: 15px 20px;
-    border: none;
-    border-radius: 50%;
+    font-size: 18px;
+    color: white;
+    border-radius: 8px;
     cursor: pointer;
-    z-index: 100;
-    transition: background-color 0.3s ease; /* Transição suave */
-    display: flex;
-    align-items: center; /* Alinha verticalmente */
-    justify-content: center; /* Alinha horizontalmente */
-    width: 50px; /* Ajuste o tamanho do botão */
-    height: 50px; /* Ajuste o tamanho do botão */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.fixed-button span {
-    font-size: 1.8rem; /* Ajuste o tamanho do texto */
-}
-
-/* Botão Fixo - Hover */
 .fixed-button:hover {
-    background-color: #6498A4;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .salty-header,
-    .salty-name,
-    .salty-min,
-    .salty-price {
-        font-size: 1rem;
-    }
-
-    .menu-container {
-        padding: 15px;
-    }
-
-    .fixed-button {
-        font-size: 1.2rem;
-        padding: 10px 15px;
-    }
+    background-color: #5f8a99;
 }
