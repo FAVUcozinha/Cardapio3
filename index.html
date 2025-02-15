@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Online</title>
+    <style>
+        @font-face {
+            font-family: 'Basic Choice 2';
+            src: url('fonts/Basic Choice 2.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Resetando margens e padding para eliminar qualquer espaçamento extra */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-color: #1A2B0F;
+            text-align: center;
+            color: white;
+            font-family: 'Basic Choice 2', Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        img {
+            width: 100%; /* Garante que todas as imagens tenham largura total */
+            height: auto; /* Mantém a proporção da imagem */
+            display: block; /* Remove qualquer espaço extra abaixo da imagem */
+        }
+
+        /* Para garantir que a imagem do topo ocupe toda a largura da tela */
+        header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+
+        /* Ajuste do espaço entre as imagens menu e salfri */
+        header img + img {
+            margin-top: 5px; /* Reduzido pela metade em relação ao valor anterior de 10px */
+        }
+
+        #salfri-img {
+            width: 50%;
+            margin: 0 auto;
+            display: block;
+            margin-top: 5px; /* Reduzido pela metade em relação ao valor anterior de 20px */
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        /* Modificação da cor das colunas "ITEM" e "QUANTIDADE" */
+        th:nth-child(1), th:nth-child(4) {
+            color: #F4E6CB; /* Cor do texto das colunas ITEM e QUANTIDADE */
+        }
+
+        /* Mantém as outras colunas com a cor padrão (branco) */
+        th:nth-child(2), th:nth-child(3) {
+            color: white;
+        }
+
+        select, input {
+            text-align: center;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #7FB1C8; /* Cor de fundo do botão */
+            border: none;
+            color: #1A2B0F; /* Cor do texto do botão */
+            cursor: pointer;
+            font-family: 'Basic Choice 2', Arial, sans-serif;
+            width: 100%; /* O botão ocupará 100% da largura do resumo */
+            font-size: 18px; /* Ajuste para tornar o botão maior e mais legível */
+        }
+
+        #resumo {
+            display: none; /* Inicialmente o resumo não será exibido */
+            margin-top: 20px;
+            font-weight: bold;
+            background-color: #F4E6CB; /* Cor de fundo do resumo */
+            color: #1A2B0F; /* Cor do texto do resumo */
+            padding: 15px;
+            border-radius: 10px; /* Margem arredondada */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        tr {
+            border-bottom: 1px solid #F4E6CB;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            height: 40px;
+            border: 2px solid #F4E6CB;
+            background-color: #F4E6CB;
+            color: #000;
+            font-family: 'Basic Choice 2', Arial, sans-serif;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+            border-radius: 10px;
+        }
+
+        .erro {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        footer {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Versão Desktop: Imagens diferentes */
+        @media (min-width: 768px) {
+            /* Ajusta as imagens do cabeçalho e rodapé para ter 100% da largura */
+            header img {
+                content: url('topodesktop.png'); /* Cabeçalho para desktop */
+                width: 100%; /* Garante que o topo tenha largura total */
+            }
+
+            footer img {
+                content: url('rodadesktop.png'); /* Rodapé para desktop */
+                width: 100%; /* Garante que o rodapé tenha largura total */
+            }
+
+            /* Garantir que a imagem do menu apareça também no desktop */
+            header img:nth-of-type(2) {
+                content: url('MENU.png'); /* Garantir que a imagem MENU apareça no desktop */
+                width: 100%; /* A largura no desktop será 100% */
+            }
+        }
+
+        @media (max-width: 767px) {
+            /* No mobile, a imagem do menu terá uma largura reduzida */
+            header img:nth-of-type(2) {
+                width: 80%; /* Reduz a largura da imagem do menu para 80% */
+                margin: 0 auto; /* Centraliza a imagem */
+                border: none; /* Remover a borda na versão mobile */
+                padding: 10px; /* Cria um espaçamento dentro da borda */
+                border-radius: 10px; /* Arredonda os cantos da borda */
+            }
+
+            /* Garantir imagens de cabeçalho e rodapé com largura total no celular */
+            header img, footer img {
+                width: 100%;
+            }
+        }
+
+        /* Distância do botão em relação ao rodapé */
+        #botao-pedido {
+            margin-bottom: 50px; /* Afastando o botão do rodapé */
+        }
+
+        /* Título "Resumo" com fonte maior */
+        #resumo h2 {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        /* Listagem lateralizada e com espaçamento */
+        .resumo-itens {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        /* Espaço entre o resumo e o rodapé */
+        footer {
+            margin-top: 30px; /* Ajustando a distância entre o resumo e o rodapé */
+        }
+
+        /* Ajuste para o total do pedido à direita */
+        #resumo-total {
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header>
+            <img src="topo.png" alt="Topo"> <!-- A imagem de topo ocupa a largura total da tela -->
+            <img src="MENU.png" alt="Menu">
+        </header>
+
+        <!-- Imagem "Salgados" centralizada e reduzida -->
+        <img src="salfri.png" alt="Salgados" id="salfri-img">
+
+        <!-- Tabela -->
+        <table>
+            <tr>
+                <th>ITEM</th>
+                <th>QNT. MÍN.</th>
+                <th>UNID.</th>
+                <th>QUANTIDADE</th>
+            </tr>
+            <tbody id="tabela-itens"></tbody>
+        </table>
+
+        <!-- Resumo do Pedido (inicialmente oculto) -->
+        <div id="resumo">
+            <h2>Resumo do Pedido</h2>
+            <div id="resumo-itens" class="resumo-itens"></div>
+            <div id="resumo-total"></div> <!-- Total geral será exibido aqui -->
+            <button onclick="fazerPedido()">Fazer Pedido</button>
+        </div>
+
+        <!-- Rodapé -->
+        <footer>
+            <img src="roda2.png" alt="Rodapé"> <!-- A imagem de rodapé ocupa a largura total da tela -->
+        </footer>
+    </div>
+
+    <script>
+        const itens = [
+            { nome: "BOLINHO DE BACALHAU", min: 20, preco: 1.00 },
+            { nome: "BOLINHO DE CALABRESA", min: 20, preco: 0.95 },
+            { nome: "BOLINHO DE CHARQUE", min: 20, preco: 0.98 },
+            { nome: "COXINHA DE FRANGO", min: 20, preco: 0.99 },
+            { nome: "CAMARÃO EMPANADO", min: 25, preco: 0.98 },
+            { nome: "MINI QUIBE", min: 20, preco: 0.99, descricao: "DE CARNE C/ QUEIJO" },
+            { nome: "PASTEL DE FESTA", min: 20, preco: 0.99 }
+        ];
+
+        function criarTabela() {
+            const tabela = document.getElementById("tabela-itens");
+            tabela.innerHTML = "";
+            
+            itens.forEach((item, index) => {
+                let linha = document.createElement("tr");
+                linha.innerHTML = `
+                    <td>${item.nome} ${item.descricao ? `<br><small>${item.descricao}</small>` : ""}</td>
+                    <td>${item.min}</td>
+                    <td>R$ ${item.preco.toFixed(2)}</td>
+                    <td>
+                        <input type="number" id="item${index}" min="0" value="0" onchange="validarQuantidade(${index})" oninput="validarQuantidade(${index})" step="1" onkeydown="ajustarValor(${index}, event)">
+                        <div id="erro${index}" class="erro"></div>
+                    </td>
+                `;
+                tabela.appendChild(linha);
+            });
+        }
+
+        function ajustarValor(index, event) {
+            const item = itens[index];
+            const input = document.getElementById(`item${index}`);
+            let valorAtual = parseInt(input.value);
+
+            if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+                if (valorAtual === 0) {
+                    input.value = item.min;
+                } else if (valorAtual < item.min) {
+                    input.value = item.min;
+                }
+            }
+        }
+
+        function validarQuantidade(index) {
+            const item = itens[index];
+            const input = document.getElementById(`item${index}`);
+            const erro = document.getElementById(`erro${index}`);
+            let quantidade = parseInt(input.value);
+
+            if (quantidade > 0 && quantidade < item.min) {
+                erro.textContent = `O pedido mínimo para este item são ${item.min} unidades.`;
+            } else if (quantidade >= item.min) {
+                erro.textContent = "";
+            } else if (quantidade === 0) {
+                erro.textContent = "";
+            }
+
+            atualizarResumo();
+        }
+
+        function atualizarResumo() {
+            let resumoItens = "";
+            let totalGeral = 0;
+
+            // Ordenando os itens por nome
+            let itensOrdenados = [...itens];
+            itensOrdenados.sort((a, b) => a.nome.localeCompare(b.nome));
+
+            // Criando a lista de itens no resumo
+            itensOrdenados.forEach((item, index) => {
+                let quantidade = parseInt(document.getElementById(`item${index}`).value);
+                if (quantidade >= item.min) {
+                    let totalItem = quantidade * item.preco;
+                    resumoItens += `${item.nome} - ${quantidade} Unidades - R$ ${totalItem.toFixed(2)}<br>`;
+                    totalGeral += totalItem;
+                }
+            });
+
+            // Atualizando o conteúdo do resumo
+            if (resumoItens !== "") {
+                document.getElementById("resumo-itens").innerHTML = resumoItens;
+                document.getElementById("resumo-total").innerHTML = `<br><strong>Total: R$ ${totalGeral.toFixed(2)}</strong>`;
+                document.getElementById("resumo").style.display = "block"; // Exibe o resumo
+            } else {
+                document.getElementById("resumo").style.display = "none"; // Oculta o resumo se não houver dados
+            }
+        }
+
+        function fazerPedido() {
+            let mensagem = "Olá, Favu!%0AGostaria de saber disponibilidade e encomendar os itens abaixo:%0A";
+            let total = 0;
+
+            itens.forEach((item, index) => {
+                let quantidade = parseInt(document.getElementById(`item${index}`).value);
+                if (quantidade >= item.min) {
+                    mensagem += `${item.nome} - ${quantidade} Unidades%0A`;
+                    total += quantidade * item.preco;
+                }
+            });
+            mensagem += `%0A*Total: R$ ${total.toFixed(2)}*`;
+            
+            window.open(`https://wa.me/558197346237?text=${mensagem}`, "_blank");
+        }
+
+        criarTabela();
+    </script>
+</body>
+</html>
