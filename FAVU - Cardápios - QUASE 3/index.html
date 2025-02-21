@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Online</title>
+    <style>
+        caption {
+            display: block;
+            color: #E09F41; /* Muda a cor do título do grupo */
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Especificando a cor dos itens e quantidades para os grupos específicos */
+        table#tabela-bolo-tradicional th:nth-child(1),
+        table#tabela-bolo-tradicional th:nth-child(4),
+        table#tabela-bolo-especial th:nth-child(1),
+        table#tabela-bolo-especial th:nth-child(4),
+        table#tabela-prato-salgado th:nth-child(1),
+        table#tabela-prato-salgado th:nth-child(4) {
+            color: #E09F41;
+        }
+
+        table#tabela-bolo-tradicional td:nth-child(1),
+        table#tabela-bolo-tradicional td:nth-child(4),
+        table#tabela-bolo-especial td:nth-child(1),
+        table#tabela-bolo-especial td:nth-child(4),
+        table#tabela-prato-salgado td:nth-child(1),
+        table#tabela-prato-salgado td:nth-child(4) {
+            color: #E09F41;
+        }
+
+        /* Remover captions extras para as informações necessárias */
+        table caption {
+           display: block;
+            text-align: center;
+            font-size: 20px;
+            margin-top: 10px;
+}
+
+        @font-face {
+            font-family: 'Basic Choice 2';
+            src: url('fonts/Basic Choice 2.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-color: #E09F41;
+            text-align: center;
+            color: white;
+            font-family: 'Basic Choice 2', Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+
+        header img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+        }
+
+        header img + img {
+            margin-top: 5px;
+        }
+
+        #grupo-imagem {
+            width: 50%;
+            margin: 0 auto;
+            display: block;
+            margin-top: 5px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        th:nth-child(1), th:nth-child(4) {
+            color: #E09F41;
+        }
+
+        th:nth-child(2), th:nth-child(3) {
+            color: white;
+        }
+
+        select, input {
+            text-align: center;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #7FB1C8;
+            border: none;
+            color: #1A2B0F;
+            cursor: pointer;
+            font-family: 'Basic Choice 2', Arial, sans-serif;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        #resumo {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+            background-color: #F4E6CB;
+            color: #1A2B0F;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        tr {
+            border-bottom: 1px solid #F4E6CB;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            height: 40px;
+            border: 2px solid #F4E6CB;
+            background-color: #F4E6CB;
+            color: #000;
+            font-family: 'Basic Choice 2', Arial, sans-serif;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+            border-radius: 10px;
+        }
+
+        .erro {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        footer {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer img {
+            width: 100%;
+            height: auto;
+        }
+
+        @media (min-width: 768px) {
+            header img {
+                content: url('topodesktop.png');
+                width: 100%;
+            }
+
+            footer img {
+                content: url('rodadesktop.png');
+                width: 100%;
+            }
+
+            header img:nth-of-type(2) {
+                content: url('MENU.png');
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 767px) {
+            header img:nth-of-type(2) {
+                width: 80%;
+                margin: 0 auto;
+                border: none;
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            header img, footer img {
+                width: 100%;
+            }
+        }
+
+        #botao-pedido {
+            margin-bottom: 50px;
+        }
+
+        #resumo h2 {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .resumo-itens {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        footer {
+            margin-top: 30px;
+        }
+
+        #resumo-total {
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        #botao-voltar {
+            background-color: #7FB1C8;
+            color: #1A2B0F;
+            font-size: 18px;
+            border: none;
+            padding: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-family: 'Basic Choice 2', Arial, sans-serif;
+        }
+
+        .item-nome {
+    font-weight: bold;
+    color: inherit;  /* Herda a cor do elemento pai */
+}
+
+.descricao {
+    font-size: 12px; /* Ajuste o tamanho conforme necessário */
+    margin-top: 4px; /* Espaçamento entre o nome e a descrição */
+    color: inherit;  /* Herda a cor do nome */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="topo.png" alt="Topo">
+            <img src="MENU.png" alt="Menu">
+        </header>
+
+        <!-- Grupo Salgado Frito -->
+        <img src="salfri.png" alt="Salgados Fritos" id="grupo-imagem">
+        <table>
+            <caption>Salgados Fritos</caption>
+            <tr>
+                <th>ITEM</th>
+                <th>QNT. MÍN.</th>
+                <th>UNID.</th>
+                <th>QUANTIDADE</th>
+            </tr>
+            <tbody id="tabela-salfri"></tbody>
+        </table>
+
+        <!-- Grupo Salgados Forno -->
+        <img src="SALFOR.png" alt="Salgados Forno" id="grupo-imagem">
+        <table>
+            <caption>Salgados Forno</caption>
+            <tr>
+                <th>ITEM</th>
+                <th>QNT. MÍN.</th>
+                <th>UNID.</th>
+                <th>QUANTIDADE</th>
+            </tr>
+            <tbody id="tabela-salgado-forno"></tbody>
+        </table>
+
+        <!-- Grupo Salgados Vegetarianos -->
+        <img src="SALVEG.png" alt="Salgados Vegetarianos" id="grupo-imagem">
+        <table>
+            <caption>Salgados Vegetarianos</caption>
+            <tr>
+                <th>ITEM</th>
+                <th>QNT. MÍN.</th>
+                <th>UNID.</th>
+                <th>QUANTIDADE</th>
+            </tr>
+            <tbody id="tabela-salgado-vegetariano"></tbody>
+        </table>
+
+        <!-- Grupo Bolos Tradicionais -->
+        <img src="BOLTRA.png" alt="Bolos Tradicionais" id="grupo-imagem">
+        <table>
+            <caption>Bolos Tradicionais</caption>
+            <tr>
+                <th>ITEM</th>
+                <th>TAMANHO</th>
+                <th>UNID.</th>
+                <th>QUANTIDADE</th>
+            </tr>
+            <tbody id="tabela-bolo-tradicional"></tbody>
+        </table>
+
+        <!-- Grupo Bolos Especiais -->
+        <img src="BOLESP.png" alt="Bolos Especiais" id="grupo-imagem">
+        <table>
+            <caption>Bolos Especiais</caption>
+            <tr>
+                <th>ITEM</th>
+                <th>TAMANHO</th>
+                <th>UNID.</th>
+                <th>QUANTIDADE</th>
+            </tr>
+            <tbody id="tabela-bolo-especial"></tbody>
+        </table>
+
+        <!-- Grupo Pratos Salgados -->
+        <img src="PRASAL.png" alt="Pratos Salgados" id="grupo-imagem">
+        <table>
+            <caption>Pratos Salgados</caption>
+            <tr>
+                <th>ITEM</th>
+                <th>TAMANHO</th>
+                <th>UNID.</th>
+                <th>QUANTIDADE</th>
+            </tr>
+            <tbody id="tabela-prato-salgado"></tbody>
+        </table>
+
+        <div id="resumo">
+            <h2>Resumo do Pedido</h2>
+            <div id="resumo-itens" class="resumo-itens"></div>
+            <div id="resumo-total"></div>
+            <button onclick="fazerPedido()">Fazer Pedido</button>
+        </div>
+
+        <button id="botao-voltar" onclick="voltar()">Voltar</button>
+
+        <footer>
+            <img src="roda2.png" alt="Rodapé">
+        </footer>
+    </div>
+
+    <script>
+        const itensSalgadoFrito = [
+            { nome: "Bolinho de Bacalhau", min: 20, preco: 1.00, descricao: "" },
+            { nome: "Bolinho de Calabresa", min: 20, preco: 0.90, descricao: "" },
+            { nome: "Bolinho de Charque", min: 20, preco: 1.00, descricao: "" },
+            { nome: "Coxinha de Frango", min: 20, preco: 0.90, descricao: "" },
+            { nome: "Camarão Empanado", min: 25, preco: 1.40, descricao: "" },
+            { nome: "Mini Quibe", min: 25, preco: 1.10, descricao: "De Carne C/ Queijo" },
+            { nome: "Pastel de Festa", min: 20, preco: 1.20, descricao: "" },
+        ];
+
+        const itensSalgadoForno = [
+            { nome: "Canudinho de Frango", min: 20, preco: 1.50,descricao: "Massa Caseira Assada no Forno" },
+            { nome: "Empadinha de Bacalhau", min: 20, preco: 1.00, descricao: "" },
+            { nome: "Empadinha de Camarão", min: 20, preco: 1.00, descricao: "" },
+            { nome: "Empadinha de Carne", min: 20, preco: 0.90, descricao: "" },
+            { nome: "Empadinha de Frango", min: 20, preco: 0.90, descricao: "" },
+            { nome: "Mini Folhado de Carne", min: 20, preco: 2.10, descricao: "" },
+            { nome: "Mini Folhado de Frango", min: 20, preco: 2.10, descricao: "" },
+            { nome: "Mini Folhado de Queijo", min: 20, preco: 2.10, descricao: "" },
+            { nome: "Mini Folhado de Pizza", min: 20, preco: 2.10, descricao: "" },
+            { nome: "Mini Enroladinho", min: 20, preco: 1.00, descricao: "Salsicha" },
+            { nome: "Pastel de Forno Bacalhau", min: 20, preco: 1.20, descricao: "" },
+            { nome: "Pastel de Forno Camarão", min: 20, preco: 1.20, descricao: "" },
+            { nome: "Pastel de Forno Carne", min: 20, preco: 0.90, descricao: "" },
+            { nome: "Pastel de Forno Frango", min: 20, preco: 0.90, descricao: "" },
+            { nome: "Pastel de Forno Queijo", min: 20, preco: 0.90, descricao: "" },
+            { nome: "Pastel de Forno Pizza", min: 20, preco: 0.90, descricao: "" },
+        ];
+
+        const itensSalgadoVegetariano = [
+            { nome: "Canudinho de Soja", min: 20, preco: 1.50, descricao: "Massa Caseira Assada no Forno" },
+            { nome: "Coxinha de Soja", min: 20, preco: 0.90, descricao: "" },
+            { nome: "Coxinha de Caju *", min: 20, preco: 1.10, descricao: "* CONSULTAR DISPONIBILIDADE *" },
+            { nome: "Empadinha de Creme de Aborbinha", min: 20, preco: 0.90, descricao: "Com Queijo" },
+            { nome: "Empadinha de Falso Camarão", min: 20, preco: 0.90, descricao: "A Base de Milho e Leite de Coco" },
+            { nome: "Pastel de Festa", min: 20, preco: 1.20, descricao: "Soja" },
+            { nome: "Pastel de Forno Creme de Abobrinha", min: 20, preco: 0.90, descricao: "Com Queijo" },
+            { nome: "Pastel de Forno Caju *", min: 20, preco: 1.20, descricao: "* CONSULTAR DISPONIBILIDADE *" },
+        ];
+
+        const itensBoloTradicional = [
+            { nome: "Bolo de Bem-Casado", min: "P (1.5 KG)", preco: 85.00, descricao: "" },
+            { nome: "Bolo de Bem-Casado", min: "M (2.5 KG)", preco: 140.00, descricao: "" },
+            { nome: "Bolo de Bem-Casado", min: "G (3.5 KG)", preco: 195.00, descricao: "" },
+            { nome: "Bolo de Doce de Leite", min: "P (1.5 KG)", preco: 85.00, descricao: "C/ Crocante de Amendoin" },
+            { nome: "Bolo de Doce de Leite", min: "M (2.5 KG)", preco: 140.00, descricao: "C/ Crocante de Amendoin" },,
+            { nome: "Bolo de Doce de Leite", min: "G (3.5 KG)", preco: 195.00, descricao: "C/ Crocante de Amendoin" },
+            { nome: "Bolo de Chocolate", min: "P (1.5 KG)", preco: 85.00, descricao: "" },
+            { nome: "Bolo de Chocolate", min: "M (2.5 KG)", preco: 140.00, descricao: "" },
+            { nome: "Bolo de Chocolate", min: "G (3.5 KG)", preco: 195.00, descricao: "" },
+            { nome: "Bolo de Limão", min: "P (1.5 KG)", preco: 85.00, descricao: "C/ Cholocate Branco" },
+            { nome: "Bolo de Limão", min: "M (2.5 KG)", preco: 140.00, descricao: "C/ Cholocate Branco" },
+            { nome: "Bolo de Limão", min: "G (3.5 KG)", preco: 195.00, descricao: "C/ Cholocate Branco" },
+            { nome: "Bolo de Maracujá", min: "P (1.5 KG)", preco: 85.00, descricao: "" },
+            { nome: "Bolo de Maracujá", min: "M (2.5 KG)", preco: 140.00, descricao: "" },
+            { nome: "Bolo de Maracujá", min: "G (3.5 KG)", preco: 195.00, descricao: "" },
+        ];
+
+        const itensBoloEspecial = [
+            { nome: "Bolo de Ameixa", min: "P (1.5 KG)", preco: 105.00, descricao: "C/ Chocolate Branco" },
+            { nome: "Bolo de Ameixa", min: "M (1.5 KG)", preco: 175.00, descricao: "C/ Chocolate Branco" },
+            { nome: "Bolo de Ameixa", min: "G (1.5 KG)", preco: 245.00, descricao: "C/ Chocolate Branco" },
+            { nome: "Bolo de Café e Doce de Leite", min: "P (1.5 KG)", preco: 105.00, descricao: "C/ Chocolate Amargo" },
+            { nome: "Bolo de Café e Doce de Leite", min: "M (2.5 KG)", preco: 175.00, descricao: "C/ Chocolate Amargo" },
+            { nome: "Bolo de Café e Doce de Leite", min: "G (3.5 KG)", preco: 245.00, descricao: "C/ Chocolate Amargo" },
+            { nome: "Bolo de Chocolate 50%", min: "P (1.5 KG)", preco: 105.00, descricao: "C/ Morangos" },
+            { nome: "Bolo de Chocolate 50%", min: "M (1.5 KG)", preco: 175.00, descricao: "C/ Morangos" },
+            { nome: "Bolo de Chocolate 50%", min: "G (1.5 KG)", preco: 245.00, descricao: "C/ Morangos" },
+            { nome: "Bolo de Delicia de Abacaxi", min: "P (1.5 KG)", preco: 105.00, descricao: "" },
+            { nome: "Bolo de Delicia de Abacaxi", min: "M (1.5 KG)", preco: 175.00, descricao: "" },
+            { nome: "Bolo de Delicia de Abacaxi", min: "G (1.5 KG)", preco: 245.00, descricao: "" },
+            { nome: "Bolo de Morango", min: "P (1.5 KG)", preco: 105.00, descricao: "C/ Recheio de Brigadeiro Branco" },
+            { nome: "Bolo de Morango", min: "M (1.5 KG)", preco: 175.00, descricao: "C/ Recheio de Brigadeiro Branco" },
+            { nome: "Bolo de Morango", min: "G (1.5 KG)", preco: 245.00, descricao: "C/ Recheio de Brigadeiro Branco" },
+            { nome: "Bolo de Prestígio", min: "P (1.5 KG)", preco: 105.00, descricao: "" },
+            { nome: "Bolo de Prestígio", min: "M (1.5 KG)", preco: 175.00, descricao: "" },
+            { nome: "Bolo de Prestígio", min: "G (1.5 KG)", preco: 245.00, descricao: "" },
+        ];
+
+        const itensPratoSalgado = [
+            { nome: "Empadrão Bacalhau", min: "P (1 KG)", preco: 95.00, descricao: "" },
+            { nome: "Empadrão Bacalhau", min: "M (2 KG)", preco: 190.00, descricao: "" },
+            { nome: "Empadrão Bacalhau", min: "G (3 KG)", preco: 285.00, descricao: "" },
+            { nome: "Empadrão Carne", min: "P (1 KG)", preco: 65.00, descricao: "" },
+            { nome: "Empadrão Carne", min: "M (2 KG)", preco: 130.00, descricao: "" },
+            { nome: "Empadrão Carne", min: "G (3 KG)", preco: 195.00, descricao: "" },
+            { nome: "Empadrão Camarão", min: "P (1 KG)", preco: 95.00, descricao: "" },
+            { nome: "Empadrão Camarão", min: "M (2 KG)", preco: 190.00, descricao: "" },
+            { nome: "Empadrão Camarão", min: "G (3 KG)", preco: 285.00, descricao: "" },
+            { nome: "Empadrão Frango", min: "P (1 KG)", preco: 65.00, descricao: "" },
+            { nome: "Empadrão Frango", min: "M (2 KG)", preco: 130.00, descricao: "" },
+            { nome: "Empadrão Frango", min: "G (3 KG)", preco: 195.00, descricao: "" },
+            { nome: "Fricassê Frango", min: "P (1 KG)", preco: 75.00, descricao: "" },
+            { nome: "Fricassê Frango", min: "M (2 KG)", preco: 150.00, descricao: "" },
+            { nome: "Fricassê Frango", min: "G (3 KG)", preco: 225.00, descricao: "" },
+            { nome: "Quiche Camarão", min: "P (1 KG)", preco: 110.00, descricao: "" },
+            { nome: "Quiche Camarão", min: "M (2 KG)", preco: 220.00, descricao: "" },
+            { nome: "Quiche Camarão", min: "G (3 KG)", preco: 330.00, descricao: "" },
+            { nome: "Quiche Frango", min: "P (1 KG)", preco: 80.00, descricao: "C/ Alho Poró" },
+            { nome: "Quiche Frango", min: "M (2 KG)", preco: 160.00, descricao: "C/ Alho Poró" },
+            { nome: "Quiche Frango", min: "G (3 KG)", preco: 240.00, descricao: "C/ Alho Poró" },
+            { nome: "Rocambole Bacalhau", min: "P (1 KG)", preco: 95.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Bacalhau", min: "M (2 KG)", preco: 190.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Bacalhau", min: "G (3 KG)", preco: 285.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Camarão", min: "P (1 KG)", preco: 95.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Camarão", min: "M (2 KG)", preco: 190.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Camarão", min: "G (3 KG)", preco: 285.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Carne", min: "P (1 KG)", preco: 65.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Carne", min: "M (2 KG)", preco: 130.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Carne", min: "G (3 KG)", preco: 195.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Frango", min: "P (1 KG)", preco: 65.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Frango", min: "M (2 KG)", preco: 130.00, descricao: "Massa de Batata" },
+            { nome: "Rocambole Frango", min: "G (3 KG)", preco: 195.00, descricao: "Massa de Batata" },
+            { nome: "Torta Salgada Bacalhau", min: "P (1 KG)", preco: 95.00, descricao: "" },
+            { nome: "Torta Salgada Bacalhau", min: "M (2 KG)", preco: 190.00, descricao: "" },
+            { nome: "Torta Salgada Bacalhau", min: "G (3 KG)", preco: 285.00, descricao: "" },
+            { nome: "Torta Salgada Carne", min: "P (1 KG)", preco: 65.00, descricao: "" },
+            { nome: "Torta Salgada Carne", min: "M (2 KG)", preco: 130.00, descricao: "" },
+            { nome: "Torta Salgada Carne", min: "G (3 KG)", preco: 195.00, descricao: "" },
+            { nome: "Torta Salgada Camarão", min: "P (1 KG)", preco: 95.00, descricao: "" },
+            { nome: "Torta Salgada Camarão", min: "M (2 KG)", preco: 190.00, descricao: "" },
+            { nome: "Torta Salgada Camarão", min: "G (3 KG)", preco: 285.00, descricao: "" },
+            { nome: "Torta Salgada Frango", min: "P (1 KG)", preco: 65.00, descricao: "" },
+            { nome: "Torta Salgada Frango", min: "M (2 KG)", preco: 130.00, descricao: "" },
+            { nome: "Torta Salgada Frango", min: "G (3 KG)", preco: 195.00, descricao: "" },
+        ];
+
+        function criarTabelaGrupo(grupo, idTabela) {
+            const tabela = document.getElementById(idTabela);
+            grupo.forEach(item => {
+                const tr = document.createElement("tr");
+                
+                tr.innerHTML = `
+                    <td>
+                        <div class="item-nome">${item.nome}</div>
+                        <div class="descricao">${item.descricao}</div>
+                    </td>
+                    <td>${item.min}</td>
+                    <td>R$ ${item.preco.toFixed(2)}</td>
+                    <td>
+                        <input type="number" min="0" value="0" data-min="${item.min}" data-preco="${item.preco}" class="quantidade-input">
+                    </td>
+                `;
+                tabela.appendChild(tr);
+            });
+        }
+
+        criarTabelaGrupo(itensSalgadoFrito, "tabela-salfri");
+        criarTabelaGrupo(itensSalgadoForno, "tabela-salgado-forno");
+        criarTabelaGrupo(itensSalgadoVegetariano, "tabela-salgado-vegetariano");
+        criarTabelaGrupo(itensBoloTradicional, "tabela-bolo-tradicional");
+        criarTabelaGrupo(itensBoloEspecial, "tabela-bolo-especial");
+        criarTabelaGrupo(itensPratoSalgado, "tabela-prato-salgado");
+
+        function atualizarTotal() {
+            let total = 0;
+            const resumoItens = document.getElementById("resumo-itens");
+            resumoItens.innerHTML = ''; // Limpa o conteúdo anterior
+            let grupos = {
+                "Salgados Fritos": [],
+                "Salgados Forno": [],
+                "Salgados Vegetarianos": [],
+                "Bolos Tradicionais": [],
+                "Bolos Especiais": [],
+                "Pratos Salgados": []
+            };
+
+            // Preenche os grupos com os itens selecionados
+            document.querySelectorAll(".quantidade-input").forEach(input => {
+                const quantidade = parseInt(input.value);
+                const min = parseInt(input.getAttribute("data-min"));
+                const preco = parseFloat(input.getAttribute("data-preco"));
+                const nome = input.closest("tr").querySelector("td").textContent;
+                const grupoNome = input.closest("table").querySelector("caption").textContent;
+
+                if (quantidade >= min) {
+                    const totalItem = quantidade * preco;
+                    total += totalItem;
+
+                    grupos[grupoNome].push({
+                        nome,
+                        quantidade,
+                        totalItem
+                    });
+                }
+            });
+
+            // Exibe os grupos apenas se houver itens
+            for (const grupo in grupos) {
+                if (grupos[grupo].length > 0) {
+                    resumoItens.innerHTML += `<br><strong>${grupo}:</strong><br>`;
+                    grupos[grupo].forEach(item => {
+                        resumoItens.innerHTML += `${item.nome} - ${item.quantidade} unidades - R$: ${item.totalItem.toFixed(2)}<br>`;
+                    });
+                }
+            }
+
+            document.getElementById("resumo-total").textContent = `Total: R$ ${total.toFixed(2)}`;
+            document.getElementById("resumo").style.display = total > 0 ? 'block' : 'none';
+        }
+
+        document.querySelectorAll(".quantidade-input").forEach(input => {
+            input.addEventListener("input", atualizarTotal);
+        });
+
+        function voltar() {
+            window.location.reload();
+        }
+
+        // Função para coletar os itens selecionados
+        function fazerPedido() {
+            let resumo = "Olá, Favu!\nGostaria de saber a disponibilidade e encomendar os itens abaixo:\n\n";
+            let total = 0;
+            let itemPedidos = "";
+        
+        // Função para gerar o pedido formatado de um grupo de itens
+        function gerarResumo(grupo, nomeGrupo) {
+            let grupoResumo = grupo.filter(item => {
+                let quantidade = parseInt(document.querySelector(`[data-item="${item.nome}"]`).value);
+                return quantidade > 0;
+            });
+
+            if (grupoResumo.length > 0) {
+                itemPedidos += nomeGrupo + ":\n";
+                grupoResumo.forEach(item => {
+                    let quantidade = parseInt(document.querySelector(`[data-item="${item.nome}"]`).value);
+                    itemPedidos += `${item.nome} - ${quantidade} unidades\n`;
+                    total += item.preco * quantidade;
+                });
+                itemPedidos += "\n";
+            }
+        }
+
+        // Gerar resumo para cada grupo
+        gerarResumo(itensBoloTradicional, "Bolos Tradicionais");
+        gerarResumo(itensBoloEspecial, "Bolos Especiais");
+        gerarResumo(itensPratoSalgado, "Pratos Salgados");
+
+        // Total
+        resumo += itemPedidos + "Total: R$ " + total.toFixed(2);
+        
+        // Substituindo espaços e caracteres especiais para o WhatsApp
+        let mensagem = encodeURIComponent(resumo);
+
+        // Construindo o link para o WhatsApp
+        let link = `https://wa.me/558197346237?text=${mensagem}`;
+
+        // Abrindo o WhatsApp
+        window.open(link, '_blank');
+    }
+    
+    </script>
+</body>
+</html>
