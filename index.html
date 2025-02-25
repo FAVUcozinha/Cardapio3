@@ -493,7 +493,7 @@
                             <div class="descricao">${item.descricao}</div>
                         </td>
                         <td>${qtdOutamanho}</td>
-                        <td>R$ ${formatarPreco(item.preco)}</td>
+                        <td>R$ ${item.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                         <td>
                             <div class="quantidade-container">
                                 <input type="number" min="0" value="0" data-min="${item.min || 1}" data-preco="${item.preco}" data-resumo="${item.descricaoResumo}" data-grupo="${nomeGrupo}" class="quantidade-input">
@@ -506,12 +506,7 @@
                     tabela.appendChild(tr);
                 });
             }
-              
-            function formatarPreco(preco) {
-            // Formata o preço para ter dois dígitos após a vírgula e ponto como separador de milhar
-            return preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            }
-
+    
             // Chamando a função para cada grupo de itens
             const gruposItens = {
                 "tabela-salfri": { itens: itensSalgadoFrito, nomeGrupo: "Salgados Fritos" },
@@ -565,12 +560,12 @@
                 for (const grupo in gruposResumo) {
                     resumoItens.innerHTML += `<strong>${grupo}:</strong><br>`;
                     gruposResumo[grupo].forEach(item => {
-                        resumoItens.innerHTML += `${item.descricao} - ${item.quantidade} unidades - R$ ${formatarPreco(item.totalItem)}<br>`;
+                        resumoItens.innerHTML += `${item.descricao} - ${item.quantidade} unidades - R$ ${item.totalItem.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br>`;
                     });
                     resumoItens.innerHTML += `<br>`; // Separando grupos
                 }
     
-                document.getElementById("resumo-total").textContent = `Total: R$ ${formatarPreco(total)}`;
+                document.getElementById("resumo-total").textContent = `Total: R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
                 document.getElementById("resumo").style.display = total > 0 ? 'block' : 'none';
             }
     
@@ -614,16 +609,23 @@
                     resumoWhatsapp += `\n`; // Separando grupos
                 }
     
-                resumoWhatsapp += `Total: R$ ${formatarPreco(totalPedido)}\n\n` +
-                    "Aguardo a confirmação e envio de mais detalhes.";
-    
-                const encodedMessage = encodeURIComponent(resumoWhatsapp);
-                const linkWhatsapp = `https://wa.me/5581999591775?text=${encodedMessage}`;
-                window.open(linkWhatsapp, "_blank");
+                resumoWhatsapp += `\n*Total*: R$ ${totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                let mensagemWhatsapp = encodeURIComponent(resumoWhatsapp);
+                let linkWhatsapp = `https://wa.me/5581999591775?text=${mensagemWhatsapp}`;
+                window.open(linkWhatsapp, '_blank');
             }
     
-            // Adicionando evento de clique para o botão de pedido
-            document.getElementById("fazer-pedido-btn")?.addEventListener("click", fazerPedido);
+            // Adiciona evento para fazer o pedido
+            const fazerPedidoButton = document.querySelector('button[onclick="fazerPedido()"]');
+            if (fazerPedidoButton) {
+                fazerPedidoButton.addEventListener("click", fazerPedido);
+            }
+    
+            // Função para voltar e recarregar a página
+            const voltarButton = document.getElementById("voltar");
+            if (voltarButton) {
+                voltarButton.addEventListener("click", () => window.location.reload());
+            }
         });
     </script>
     
