@@ -325,6 +325,51 @@
             display: block;
             margin-top: 10px;
         }
+
+        /* Ajustes para dispositivos móveis */
+        @media (max-width: 767px) {
+            /* Garantir que os campos de data e horário tenham a mesma largura exata do campo "forma de pagamento" */
+            .popup input[type="date"],
+            .popup input[type="time"],
+            .popup select {
+                width: 100%; /* Largura do campo de 100% do espaço disponível */
+                padding: 12px; /* Ajuste do padding para alinhar */
+                margin: 10px 0; /* Margem entre os campos */
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                font-family: 'Basic Choice 2', Arial, sans-serif;
+                font-size: 16px;
+                background-color: #fff;
+                color: #000;
+                box-sizing: border-box;
+                height: 50px; /* Altura dos campos */
+            }
+
+            /* Garantir que o campo "forma de pagamento" tenha a mesma largura dos outros campos */
+            .popup select {
+                width: 100%; /* Largura igual para todos os campos */
+                text-align: center; /* Centralizar o texto dentro do campo */
+            }
+
+            /* Ajustar a largura do popup para a versão mobile */
+            .popup-conteudo {
+                width: 90%; /* Largura do popup */
+                max-width: 350px; /* Limite máximo para a largura */
+            }
+
+            /* Estilo do botão */
+            .popup button {
+                padding: 12px;
+                background-color: #7FB1C8;
+                color: #FFF;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                width: 100%;
+                font-size: 18px;
+            }
+        }
+  
     </style>
     
 </head>
@@ -439,9 +484,9 @@
         
                     <label for="pagamento">Forma de Pagamento:</label>
                     <select id="pagamento" name="pagamento" required>
-                        <option value="PIX">PIX</option>
                         <option value="Dinheiro">Dinheiro</option>
                         <option value="Cartão">Cartão</option>
+                        <option value="Pix">Pix</option>
                     </select>
 
                     <button type="button" onclick="confirmarPedido()">Confirmar Pedido</button>
