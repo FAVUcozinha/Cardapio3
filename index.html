@@ -439,9 +439,9 @@
         
                     <label for="pagamento">Forma de Pagamento:</label>
                     <select id="pagamento" name="pagamento" required>
+                        <option value="PIX">PIX</option>
                         <option value="Dinheiro">Dinheiro</option>
                         <option value="Cartão">Cartão</option>
-                        <option value="Pix">Pix</option>
                     </select>
 
                     <button type="button" onclick="confirmarPedido()">Confirmar Pedido</button>
@@ -683,7 +683,7 @@
     
             // Função para enviar o pedido para o WhatsApp
             function confirmarPedido() {
-                let resumoWhatsapp = "Olá, Favu!\nGostaria de saber a disponibilidade e encomendar os itens abaixo:\n\n";
+                let resumoWhatsapp = "Olá, Favu!\nGostaria de saber a disponibilidade para encomendar os itens abaixo:\n\n\n*_- Resumo do pedido_:*\n\n";
                 let totalPedido = 0;
     
                 const gruposResumo = {}; // Objeto para agrupar os itens pelos grupos
@@ -716,7 +716,7 @@
                     resumoWhatsapp += `\n`; // Separando grupos
                 }
     
-                resumoWhatsapp += `\n*Total*: R$ ${totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                resumoWhatsapp += `*_Total_*: R$ ${totalPedido.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     
                 // Coleta os dados do formulário
                 const nome = document.getElementById("nome").value;
@@ -726,7 +726,7 @@
     
                 // Valida se todos os campos foram preenchidos
                 if (!nome || !data || !horario || !pagamento) {
-                    alert("Por favor, preencha todos os campos!");
+                    alert("Por gentileza, preencha todos os campos!");
                     return;
                 }
     
@@ -735,7 +735,7 @@
                 const dataFormatada = `${dataParts[2]}/${dataParts[1]}/${dataParts[0]}`;
     
                 // Adiciona os dados do pedido no final da mensagem
-                resumoWhatsapp += `\n\n*Nome*: ${nome}\n*Data da entrega*: ${dataFormatada}\n*Horário da entrega*: ${horario}\n*Forma de pagamento*: ${pagamento}`;
+                resumoWhatsapp += `\n\n\n\n_*- Informações do Pedido:*_\n\n*Nome*: ${nome}\n*Data da entrega*: ${dataFormatada}\n*Horário da entrega*: ${horario}\n*Forma de pagamento*: ${pagamento}`;
     
                 // Envia a mensagem via WhatsApp
                 const whatsappLink = `https://wa.me/558199591775?text=${encodeURIComponent(resumoWhatsapp)}`;
