@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedido Online</title>
+    <title>Resumo do Pedido</title>
     <style>
         caption {
             display: block;
@@ -31,13 +31,12 @@
             color: #E09F41;
         }
 
-        /* Remover captions extras para as informações necessárias */
         table caption {
-           display: block;
+            display: block;
             text-align: center;
             font-size: 20px;
             margin-top: 10px;
-}
+        }
 
         @font-face {
             font-family: 'Basic Choice 2';
@@ -239,16 +238,15 @@
         }
 
         .item-nome {
-    font-weight: bold;
-    color: inherit;  /* Herda a cor do elemento pai */
-}
+            font-weight: bold;
+            color: inherit;  /* Herda a cor do elemento pai */
+        }
 
-.descricao {
-    font-size: 12px; /* Ajuste o tamanho conforme necessário */
-    margin-top: 4px; /* Espaçamento entre o nome e a descrição */
-    color: inherit;  /* Herda a cor do nome */
-}
-
+        .descricao {
+            font-size: 12px; /* Ajuste o tamanho conforme necessário */
+            margin-top: 4px; /* Espaçamento entre o nome e a descrição */
+            color: inherit;  /* Herda a cor do nome */
+        }
     </style>
 </head>
 <body>
@@ -303,7 +301,7 @@
             <caption>Bolos Tradicionais</caption>
             <tr>
                 <th>ITEM</th>
-                <th>TAMANHO</th>
+                <th>tamanho</th>
                 <th>UNID.</th>
                 <th>QUANTIDADE</th>
             </tr>
@@ -316,7 +314,7 @@
             <caption>Bolos Especiais</caption>
             <tr>
                 <th>ITEM</th>
-                <th>TAMANHO</th>
+                <th>tamanho</th>
                 <th>UNID.</th>
                 <th>QUANTIDADE</th>
             </tr>
@@ -329,7 +327,7 @@
             <caption>Pratos Salgados</caption>
             <tr>
                 <th>ITEM</th>
-                <th>TAMANHO</th>
+                <th>tamanho</th>
                 <th>UNID.</th>
                 <th>QUANTIDADE</th>
             </tr>
@@ -342,266 +340,295 @@
             <div id="resumo-total"></div>
             <button onclick="fazerPedido()">Fazer Pedido</button>
         </div>
-
-        <button id="botao-voltar" onclick="voltar()">Voltar</button>
-
+        
+        <button id="voltar" onclick="window.location.href='https://favucozinha.github.io/Inicio/'">Voltar</button>
+        
         <footer>
             <img src="roda2.png" alt="Rodapé">
         </footer>
     </div>
 
     <script>
-        const itensSalgadoFrito = [
-            { nome: "Bolinho de Bacalhau", min: 20, preco: 1.00, descricao: "" },
-            { nome: "Bolinho de Calabresa", min: 20, preco: 0.90, descricao: "" },
-            { nome: "Bolinho de Charque", min: 20, preco: 1.00, descricao: "" },
-            { nome: "Coxinha de Frango", min: 20, preco: 0.90, descricao: "" },
-            { nome: "Camarão Empanado", min: 25, preco: 1.40, descricao: "" },
-            { nome: "Mini Quibe", min: 25, preco: 1.10, descricao: "De Carne C/ Queijo" },
-            { nome: "Pastel de Festa", min: 20, preco: 1.20, descricao: "" },
-        ];
+        document.addEventListener("DOMContentLoaded", function () {
+            // Definindo os itens para cada grupo
+                const itensSalgadoFrito = [
+                { nome: "Bolinho de Bacalhau", min: 20, preco: 1.00, descricaoResumo: "Bolinho de Bacalhau", descricao: "" },
+                { nome: "Bolinho de Calabresa", min: 20, preco: 0.90, descricaoResumo: "Bolinho de Calabresa", descricao: "" },
+                { nome: "Bolinho de Charque", min: 20, preco: 1.00, descricaoResumo: "Bolinho de Charque", descricao: "" },
+                { nome: "Coxinha de Frango", min: 20, preco: 0.90, descricaoResumo: "Coxinha de Frango", descricao: "" },
+                { nome: "Camarão Empanado", min: 25, preco: 1.40, descricaoResumo: "Camarão Empanado", descricao: "" },
+                { nome: "Mini Quibe", min: 25, preco: 1.10, descricaoResumo: "Mini Quibe de Carne C/ Queijo", descricao: "De Carne Com Queijo" },
+                { nome: "Pastel de Festa", min: 20, preco: 1.20, descricaoResumo: "Pastel de Festa", descricao: "" },
+            ];
 
-        const itensSalgadoForno = [
-            { nome: "Canudinho de Frango", min: 20, preco: 1.50,descricao: "Massa Caseira Assada no Forno" },
-            { nome: "Empadinha de Bacalhau", min: 20, preco: 1.00, descricao: "" },
-            { nome: "Empadinha de Camarão", min: 20, preco: 1.00, descricao: "" },
-            { nome: "Empadinha de Carne", min: 20, preco: 0.90, descricao: "" },
-            { nome: "Empadinha de Frango", min: 20, preco: 0.90, descricao: "" },
-            { nome: "Mini Folhado de Carne", min: 20, preco: 2.10, descricao: "" },
-            { nome: "Mini Folhado de Frango", min: 20, preco: 2.10, descricao: "" },
-            { nome: "Mini Folhado de Queijo", min: 20, preco: 2.10, descricao: "" },
-            { nome: "Mini Folhado de Pizza", min: 20, preco: 2.10, descricao: "" },
-            { nome: "Mini Enroladinho", min: 20, preco: 1.00, descricao: "Salsicha" },
-            { nome: "Pastel de Forno Bacalhau", min: 20, preco: 1.20, descricao: "" },
-            { nome: "Pastel de Forno Camarão", min: 20, preco: 1.20, descricao: "" },
-            { nome: "Pastel de Forno Carne", min: 20, preco: 0.90, descricao: "" },
-            { nome: "Pastel de Forno Frango", min: 20, preco: 0.90, descricao: "" },
-            { nome: "Pastel de Forno Queijo", min: 20, preco: 0.90, descricao: "" },
-            { nome: "Pastel de Forno Pizza", min: 20, preco: 0.90, descricao: "" },
-        ];
-
-        const itensSalgadoVegetariano = [
-            { nome: "Canudinho de Soja", min: 20, preco: 1.50, descricao: "Massa Caseira Assada no Forno" },
-            { nome: "Coxinha de Soja", min: 20, preco: 0.90, descricao: "" },
-            { nome: "Coxinha de Caju *", min: 20, preco: 1.10, descricao: "* CONSULTAR DISPONIBILIDADE *" },
-            { nome: "Empadinha de Creme de Aborbinha", min: 20, preco: 0.90, descricao: "Com Queijo" },
-            { nome: "Empadinha de Falso Camarão", min: 20, preco: 0.90, descricao: "A Base de Milho e Leite de Coco" },
-            { nome: "Pastel de Festa", min: 20, preco: 1.20, descricao: "Soja" },
-            { nome: "Pastel de Forno Creme de Abobrinha", min: 20, preco: 0.90, descricao: "Com Queijo" },
-            { nome: "Pastel de Forno Caju *", min: 20, preco: 1.20, descricao: "* CONSULTAR DISPONIBILIDADE *" },
-        ];
-
-        const itensBoloTradicional = [
-            { nome: "Bolo de Bem-Casado", min: "P (1.5 KG)", preco: 85.00, descricao: "" },
-            { nome: "Bolo de Bem-Casado", min: "M (2.5 KG)", preco: 140.00, descricao: "" },
-            { nome: "Bolo de Bem-Casado", min: "G (3.5 KG)", preco: 195.00, descricao: "" },
-            { nome: "Bolo de Doce de Leite", min: "P (1.5 KG)", preco: 85.00, descricao: "C/ Crocante de Amendoin" },
-            { nome: "Bolo de Doce de Leite", min: "M (2.5 KG)", preco: 140.00, descricao: "C/ Crocante de Amendoin" },,
-            { nome: "Bolo de Doce de Leite", min: "G (3.5 KG)", preco: 195.00, descricao: "C/ Crocante de Amendoin" },
-            { nome: "Bolo de Chocolate", min: "P (1.5 KG)", preco: 85.00, descricao: "" },
-            { nome: "Bolo de Chocolate", min: "M (2.5 KG)", preco: 140.00, descricao: "" },
-            { nome: "Bolo de Chocolate", min: "G (3.5 KG)", preco: 195.00, descricao: "" },
-            { nome: "Bolo de Limão", min: "P (1.5 KG)", preco: 85.00, descricao: "C/ Cholocate Branco" },
-            { nome: "Bolo de Limão", min: "M (2.5 KG)", preco: 140.00, descricao: "C/ Cholocate Branco" },
-            { nome: "Bolo de Limão", min: "G (3.5 KG)", preco: 195.00, descricao: "C/ Cholocate Branco" },
-            { nome: "Bolo de Maracujá", min: "P (1.5 KG)", preco: 85.00, descricao: "" },
-            { nome: "Bolo de Maracujá", min: "M (2.5 KG)", preco: 140.00, descricao: "" },
-            { nome: "Bolo de Maracujá", min: "G (3.5 KG)", preco: 195.00, descricao: "" },
-        ];
-
-        const itensBoloEspecial = [
-            { nome: "Bolo de Ameixa", min: "P (1.5 KG)", preco: 105.00, descricao: "C/ Chocolate Branco" },
-            { nome: "Bolo de Ameixa", min: "M (1.5 KG)", preco: 175.00, descricao: "C/ Chocolate Branco" },
-            { nome: "Bolo de Ameixa", min: "G (1.5 KG)", preco: 245.00, descricao: "C/ Chocolate Branco" },
-            { nome: "Bolo de Café e Doce de Leite", min: "P (1.5 KG)", preco: 105.00, descricao: "C/ Chocolate Amargo" },
-            { nome: "Bolo de Café e Doce de Leite", min: "M (2.5 KG)", preco: 175.00, descricao: "C/ Chocolate Amargo" },
-            { nome: "Bolo de Café e Doce de Leite", min: "G (3.5 KG)", preco: 245.00, descricao: "C/ Chocolate Amargo" },
-            { nome: "Bolo de Chocolate 50%", min: "P (1.5 KG)", preco: 105.00, descricao: "C/ Morangos" },
-            { nome: "Bolo de Chocolate 50%", min: "M (1.5 KG)", preco: 175.00, descricao: "C/ Morangos" },
-            { nome: "Bolo de Chocolate 50%", min: "G (1.5 KG)", preco: 245.00, descricao: "C/ Morangos" },
-            { nome: "Bolo de Delicia de Abacaxi", min: "P (1.5 KG)", preco: 105.00, descricao: "" },
-            { nome: "Bolo de Delicia de Abacaxi", min: "M (1.5 KG)", preco: 175.00, descricao: "" },
-            { nome: "Bolo de Delicia de Abacaxi", min: "G (1.5 KG)", preco: 245.00, descricao: "" },
-            { nome: "Bolo de Morango", min: "P (1.5 KG)", preco: 105.00, descricao: "C/ Recheio de Brigadeiro Branco" },
-            { nome: "Bolo de Morango", min: "M (1.5 KG)", preco: 175.00, descricao: "C/ Recheio de Brigadeiro Branco" },
-            { nome: "Bolo de Morango", min: "G (1.5 KG)", preco: 245.00, descricao: "C/ Recheio de Brigadeiro Branco" },
-            { nome: "Bolo de Prestígio", min: "P (1.5 KG)", preco: 105.00, descricao: "" },
-            { nome: "Bolo de Prestígio", min: "M (1.5 KG)", preco: 175.00, descricao: "" },
-            { nome: "Bolo de Prestígio", min: "G (1.5 KG)", preco: 245.00, descricao: "" },
-        ];
-
-        const itensPratoSalgado = [
-            { nome: "Empadrão Bacalhau", min: "P (1 KG)", preco: 95.00, descricao: "" },
-            { nome: "Empadrão Bacalhau", min: "M (2 KG)", preco: 190.00, descricao: "" },
-            { nome: "Empadrão Bacalhau", min: "G (3 KG)", preco: 285.00, descricao: "" },
-            { nome: "Empadrão Carne", min: "P (1 KG)", preco: 65.00, descricao: "" },
-            { nome: "Empadrão Carne", min: "M (2 KG)", preco: 130.00, descricao: "" },
-            { nome: "Empadrão Carne", min: "G (3 KG)", preco: 195.00, descricao: "" },
-            { nome: "Empadrão Camarão", min: "P (1 KG)", preco: 95.00, descricao: "" },
-            { nome: "Empadrão Camarão", min: "M (2 KG)", preco: 190.00, descricao: "" },
-            { nome: "Empadrão Camarão", min: "G (3 KG)", preco: 285.00, descricao: "" },
-            { nome: "Empadrão Frango", min: "P (1 KG)", preco: 65.00, descricao: "" },
-            { nome: "Empadrão Frango", min: "M (2 KG)", preco: 130.00, descricao: "" },
-            { nome: "Empadrão Frango", min: "G (3 KG)", preco: 195.00, descricao: "" },
-            { nome: "Fricassê Frango", min: "P (1 KG)", preco: 75.00, descricao: "" },
-            { nome: "Fricassê Frango", min: "M (2 KG)", preco: 150.00, descricao: "" },
-            { nome: "Fricassê Frango", min: "G (3 KG)", preco: 225.00, descricao: "" },
-            { nome: "Quiche Camarão", min: "P (1 KG)", preco: 110.00, descricao: "" },
-            { nome: "Quiche Camarão", min: "M (2 KG)", preco: 220.00, descricao: "" },
-            { nome: "Quiche Camarão", min: "G (3 KG)", preco: 330.00, descricao: "" },
-            { nome: "Quiche Frango", min: "P (1 KG)", preco: 80.00, descricao: "C/ Alho Poró" },
-            { nome: "Quiche Frango", min: "M (2 KG)", preco: 160.00, descricao: "C/ Alho Poró" },
-            { nome: "Quiche Frango", min: "G (3 KG)", preco: 240.00, descricao: "C/ Alho Poró" },
-            { nome: "Rocambole Bacalhau", min: "P (1 KG)", preco: 95.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Bacalhau", min: "M (2 KG)", preco: 190.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Bacalhau", min: "G (3 KG)", preco: 285.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Camarão", min: "P (1 KG)", preco: 95.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Camarão", min: "M (2 KG)", preco: 190.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Camarão", min: "G (3 KG)", preco: 285.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Carne", min: "P (1 KG)", preco: 65.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Carne", min: "M (2 KG)", preco: 130.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Carne", min: "G (3 KG)", preco: 195.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Frango", min: "P (1 KG)", preco: 65.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Frango", min: "M (2 KG)", preco: 130.00, descricao: "Massa de Batata" },
-            { nome: "Rocambole Frango", min: "G (3 KG)", preco: 195.00, descricao: "Massa de Batata" },
-            { nome: "Torta Salgada Bacalhau", min: "P (1 KG)", preco: 95.00, descricao: "" },
-            { nome: "Torta Salgada Bacalhau", min: "M (2 KG)", preco: 190.00, descricao: "" },
-            { nome: "Torta Salgada Bacalhau", min: "G (3 KG)", preco: 285.00, descricao: "" },
-            { nome: "Torta Salgada Carne", min: "P (1 KG)", preco: 65.00, descricao: "" },
-            { nome: "Torta Salgada Carne", min: "M (2 KG)", preco: 130.00, descricao: "" },
-            { nome: "Torta Salgada Carne", min: "G (3 KG)", preco: 195.00, descricao: "" },
-            { nome: "Torta Salgada Camarão", min: "P (1 KG)", preco: 95.00, descricao: "" },
-            { nome: "Torta Salgada Camarão", min: "M (2 KG)", preco: 190.00, descricao: "" },
-            { nome: "Torta Salgada Camarão", min: "G (3 KG)", preco: 285.00, descricao: "" },
-            { nome: "Torta Salgada Frango", min: "P (1 KG)", preco: 65.00, descricao: "" },
-            { nome: "Torta Salgada Frango", min: "M (2 KG)", preco: 130.00, descricao: "" },
-            { nome: "Torta Salgada Frango", min: "G (3 KG)", preco: 195.00, descricao: "" },
-        ];
-
-        function criarTabelaGrupo(grupo, idTabela) {
-            const tabela = document.getElementById(idTabela);
-            grupo.forEach(item => {
-                const tr = document.createElement("tr");
-                
-                tr.innerHTML = `
-                    <td>
-                        <div class="item-nome">${item.nome}</div>
-                        <div class="descricao">${item.descricao}</div>
-                    </td>
-                    <td>${item.min}</td>
-                    <td>R$ ${item.preco.toFixed(2)}</td>
-                    <td>
-                        <input type="number" min="0" value="0" data-min="${item.min}" data-preco="${item.preco}" class="quantidade-input">
-                    </td>
-                `;
-                tabela.appendChild(tr);
-            });
-        }
-
-        criarTabelaGrupo(itensSalgadoFrito, "tabela-salfri");
-        criarTabelaGrupo(itensSalgadoForno, "tabela-salgado-forno");
-        criarTabelaGrupo(itensSalgadoVegetariano, "tabela-salgado-vegetariano");
-        criarTabelaGrupo(itensBoloTradicional, "tabela-bolo-tradicional");
-        criarTabelaGrupo(itensBoloEspecial, "tabela-bolo-especial");
-        criarTabelaGrupo(itensPratoSalgado, "tabela-prato-salgado");
-
-        function atualizarTotal() {
-            let total = 0;
-            const resumoItens = document.getElementById("resumo-itens");
-            resumoItens.innerHTML = ''; // Limpa o conteúdo anterior
-            let grupos = {
-                "Salgados Fritos": [],
-                "Salgados Forno": [],
-                "Salgados Vegetarianos": [],
-                "Bolos Tradicionais": [],
-                "Bolos Especiais": [],
-                "Pratos Salgados": []
-            };
-
-            // Preenche os grupos com os itens selecionados
-            document.querySelectorAll(".quantidade-input").forEach(input => {
-                const quantidade = parseInt(input.value);
-                const min = parseInt(input.getAttribute("data-min"));
-                const preco = parseFloat(input.getAttribute("data-preco"));
-                const nome = input.closest("tr").querySelector("td").textContent;
-                const grupoNome = input.closest("table").querySelector("caption").textContent;
-
-                if (quantidade >= min) {
-                    const totalItem = quantidade * preco;
-                    total += totalItem;
-
-                    grupos[grupoNome].push({
-                        nome,
-                        quantidade,
-                        totalItem
-                    });
-                }
-            });
-
-            // Exibe os grupos apenas se houver itens
-            for (const grupo in grupos) {
-                if (grupos[grupo].length > 0) {
-                    resumoItens.innerHTML += `<br><strong>${grupo}:</strong><br>`;
-                    grupos[grupo].forEach(item => {
-                        resumoItens.innerHTML += `${item.nome} - ${item.quantidade} unidades - R$: ${item.totalItem.toFixed(2)}<br>`;
-                    });
-                }
-            }
-
-            document.getElementById("resumo-total").textContent = `Total: R$ ${total.toFixed(2)}`;
-            document.getElementById("resumo").style.display = total > 0 ? 'block' : 'none';
-        }
-
-        document.querySelectorAll(".quantidade-input").forEach(input => {
-            input.addEventListener("input", atualizarTotal);
-        });
-
-        function voltar() {
-            window.location.reload();
-        }
-
-        // Função para coletar os itens selecionados
-        function fazerPedido() {
-            let resumo = "Olá, Favu!\nGostaria de saber a disponibilidade e encomendar os itens abaixo:\n\n";
-            let total = 0;
-            let itemPedidos = "";
-        
-        // Função para gerar o pedido formatado de um grupo de itens
-        function gerarResumo(grupo, nomeGrupo) {
-            let grupoResumo = grupo.filter(item => {
-                let quantidade = parseInt(document.querySelector(`[data-item="${item.nome}"]`).value);
-                return quantidade > 0;
-            });
-
-            if (grupoResumo.length > 0) {
-                itemPedidos += nomeGrupo + ":\n";
-                grupoResumo.forEach(item => {
-                    let quantidade = parseInt(document.querySelector(`[data-item="${item.nome}"]`).value);
-                    itemPedidos += `${item.nome} - ${quantidade} unidades\n`;
-                    total += item.preco * quantidade;
-                });
-                itemPedidos += "\n";
-            }
-        }
-
-        // Gerar resumo para cada grupo
-        gerarResumo(itensBoloTradicional, "Bolos Tradicionais");
-        gerarResumo(itensBoloEspecial, "Bolos Especiais");
-        gerarResumo(itensPratoSalgado, "Pratos Salgados");
-
-        // Total
-        resumo += itemPedidos + "Total: R$ " + total.toFixed(2);
-        
-        // Substituindo espaços e caracteres especiais para o WhatsApp
-        let mensagem = encodeURIComponent(resumo);
-
-        // Construindo o link para o WhatsApp
-        let link = `https://wa.me/558197346237?text=${mensagem}`;
-
-        // Abrindo o WhatsApp
-        window.open(link, '_blank');
-    }
+            const itensSalgadoForno = [
+                { nome: "Canudinho de Frango", min: 20, preco: 1.50, descricaoResumo: "Canudinho de Frango", descricao: "Massa Caseira Assada no Forno" },
+                { nome: "Empadinha de Bacalhau", min: 20, preco: 1.00, descricaoResumo: "Empadinha de Bacalhau", descricao: "" },
+                { nome: "Empadinha de Camarão", min: 20, preco: 1.00, descricaoResumo: "Empadinha de Camarão", descricao: "" },
+                { nome: "Empadinha de Carne", min: 20, preco: 0.90, descricaoResumo: "Empadinha de Carne", descricao: "" },
+                { nome: "Empadinha de Frango", min: 20, preco: 0.90, descricaoResumo: "Empadinha de Frango", descricao: "" },
+                { nome: "Mini Folhado de Carne", min: 20, preco: 2.10, descricaoResumo: "Mini Folhado de Carne", descricao: "" },
+                { nome: "Mini Folhado de Frango", min: 20, preco: 2.10, descricaoResumo: "Mini Folhado de Frango", descricao: "" },
+                { nome: "Mini Folhado de Queijo", min: 20, preco: 2.10, descricaoResumo: "Mini Folhado de Queijo", descricao: "" },
+                { nome: "Mini Folhado de Pizza", min: 20, preco: 2.10, descricaoResumo: "Mini Folhado de Pizza", descricao: "" },
+                { nome: "Mini Enroladinho", min: 20, preco: 1.00, descricaoResumo: "Mini Enroladinho de salsicha", descricao: "Com Salsicha" },
+                { nome: "Pastel de Forno de Bacalhau", min: 20, preco: 1.20, descricaoResumo: "Pastel de Forno de Bacalhau", descricao: "" },
+                { nome: "Pastel de Forno de Camarão", min: 20, preco: 1.20, descricaoResumo: "Pastel de Forno de Camarão", descricao: "" },
+                { nome: "Pastel de Forno de Carne", min: 20, preco: 0.90, descricaoResumo: "Pastel de Forno de Carne", descricao: "" },
+                { nome: "Pastel de Forno de Frango", min: 20, preco: 0.90, descricaoResumo: "Pastel de Forno de Frango", descricao: "" },
+                { nome: "Pastel de Forno de Queijo", min: 20, preco: 0.90, descricaoResumo: "Pastel de Forno de Queijo", descricao: "" },
+                { nome: "Pastel de Forno de Pizza", min: 20, preco: 0.90, descricaoResumo: "Pastel de Forno de Pizza", descricao: "" },
+            ];
     
+            const itensSalgadoVegetariano = [
+                { nome: "Canudinho de Soja", min: 20, preco: 1.50, descricaoResumo: "Canudinho de Soja", descricao: "Massa Caseira Assada no Forno" },
+                { nome: "Coxinha de Soja", min: 20, preco: 0.90, descricaoResumo: "Coxinha de SOJA", descricao: "" },
+                { nome: "Coxinha de Caju *", min: 20, preco: 1.10, descricaoResumo: "Coxinha de CAJU", descricao: "* CONSULTAR DISPONIBILIDADE *" },
+                { nome: "Empadinha de Creme de Aborbinha", min: 20, preco: 0.90, descricaoResumo: "Empadinha de Aborbinha Com Queijo", descricao: "Com Queijo" },
+                { nome: "Empadinha de Falso Camarão", min: 20, preco: 0.90, descricaoResumo: "Empadinha de Falso Camarão", descricao: "A Base de Milho e Leite de Coco" },
+                { nome: "Pastel de Festa Vegetariano", min: 20, preco: 1.20, descricaoResumo: "Pastel de Festa de SOJA", descricao: "De Soja" },
+                { nome: "Pastel de Forno Creme de Abobrinha", min: 20, preco: 0.90, descricaoResumo: "Pastel de Forno Abobrinha C/ Queijo", descricao: "Com Queijo" },
+                { nome: "Pastel de Forno Caju *", min: 20, preco: 1.20, descricaoResumo: "Pastel de Forno Caju", descricao: "* CONSULTAR DISPONIBILIDADE *" },
+            ];
+    
+            const itensBoloTradicional = [
+                { nome: "Bolo de Bem-Casado", tamanho: "P (1.5 KG)", preco: 85.00, descricaoResumo: "Bolo de Bem-Casado - P (1.5 KG)", descricao: "" },
+                { nome: "Bolo de Bem-Casado", tamanho: "M (2.5 KG)", preco: 140.00, descricaoResumo: "Bolo de Bem-Casado - M (2.5 KG)", descricao: "" },
+                { nome: "Bolo de Bem-Casado", tamanho: "G (3.5 KG)", preco: 195.00, descricaoResumo: "Bolo de Bem-Casado - G (3.5 KG)", descricao: "" },
+                { nome: "Bolo de Doce de Leite", tamanho: "P (1.5 KG)", preco: 85.00, descricaoResumo: "Bolo de Doce de Leite e Crocante de Amendoin - P (1.5 KG)", descricao: "Com Crocante de Amendoin" },
+                { nome: "Bolo de Doce de Leite", tamanho: "M (2.5 KG)", preco: 140.00, descricaoResumo: "Bolo de Doce de Leite e Crocante de Amendoin - M (2.5 KG)", descricao: "Com Crocante de Amendoin" },
+                { nome: "Bolo de Doce de Leite", tamanho: "G (3.5 KG)", preco: 195.00, descricaoResumo: "Bolo de Doce de Leite e Crocante de Amendoin - G (3.5 KG)", descricao: "Com Crocante de Amendoin" },
+                { nome: "Bolo de Chocolate", tamanho: "P (1.5 KG)", preco: 85.00, descricaoResumo: "Bolo de Chocolate 50% Cacau - P (1.5 KG)", descricao: "Com chocolate 50% cacau" },
+                { nome: "Bolo de Chocolate", tamanho: "M (2.5 KG)", preco: 140.00, descricaoResumo: "Bolo de Chocolate 50% Cacau - M (2.5 KG)", descricao: "Com chocolate 50% cacau" },
+                { nome: "Bolo de Chocolate", tamanho: "G (3.5 KG)", preco: 195.00, descricaoResumo: "Bolo de Chocolate 50% Cacau - G (3.5 KG)", descricao: "Com chocolate 50% cacau" },
+                { nome: "Bolo de Limão", tamanho: "P (1.5 KG)", preco: 85.00, descricaoResumo: "Bolo de Limão e Chocolate Branco - P (1.5 KG)", descricao: "Com Cholocate Branco" },
+                { nome: "Bolo de Limão", tamanho: "M (2.5 KG)", preco: 140.00, descricaoResumo: "Bolo de Limão e Chocolate Branco - M (2.5 KG)", descricao: "Com Cholocate Branco" },
+                { nome: "Bolo de Limão", tamanho: "G (3.5 KG)", preco: 195.00, descricaoResumo: "Bolo de Limão e Chocolate Branco - G (3.5 KG)", descricao: "Com Cholocate Branco" },
+                { nome: "Bolo de Maracujá", tamanho: "P (1.5 KG)", preco: 85.00, descricaoResumo: "Bolo de Maracujá e Chocolate Branco - P (1.5 KG)", descricao: "Com Cholocate Branco" },
+                { nome: "Bolo de Maracujá", tamanho: "M (2.5 KG)", preco: 140.00, descricaoResumo: "Bolo de Maracujá e Chocolate Branco - M (2.5 KG)", descricao: "Com Cholocate Branco" },
+                { nome: "Bolo de Maracujá", tamanho: "G (3.5 KG)", preco: 195.00, descricaoResumo: "Bolo de Maracujá e Chocolate Branco - G (3.5 KG)", descricao: "Com Cholocate Branco" },
+            ];
+    
+            const itensBoloEspecial = [
+                { nome: "Bolo de Ameixa", tamanho: "P (1.5 KG)", preco: 105.00, descricaoResumo: "Bolo de Ameixa e Chocolate Branco - P (1.5 KG)", descricao: "Com Chocolate Branco" },
+                { nome: "Bolo de Ameixa", tamanho: "M (2.5 KG)", preco: 175.00, descricaoResumo: "Bolo de Ameixa e Chocolate Branco - M (2.5 KG)", descricao: "Com Chocolate Branco" },
+                { nome: "Bolo de Ameixa", tamanho: "G (3.5 KG)", preco: 245.00, descricaoResumo: "Bolo de Ameixa e Chocolate Branco - G (3.5 KG)", descricao: "Com Chocolate Branco" },
+                { nome: "Bolo de Café e Doce de Leite", tamanho: "P (1.5 KG)", preco: 105.00, descricaoResumo: "Bolo de Café Com Doce de Leite e Chocolate Amargo - P (1.5 KG)", descricao:"Com Chocolate Amargo" },
+                { nome: "Bolo de Café e Doce de Leite", tamanho: "M (2.5 KG)", preco: 175.00, descricaoResumo: "Bolo de Café Com Doce de Leite e Chocolate Amargo - M (2.5 KG)", descricao:"Com Chocolate Amargo" },
+                { nome: "Bolo de Café e Doce de Leite", tamanho: "G (3.5 KG)", preco: 245.00, descricaoResumo: "Bolo de Café Com Doce de Leite e Chocolate Amargo - G (3.5 KG)", descricao:"Com Chocolate Amargo" },
+                { nome: "Bolo de Chocolate 50%", tamanho: "P (1.5 KG)", preco: 105.00, descricaoResumo: "Bolo de Chocolate 50% com Morangos - P (1.5 KG)", descricao:"Com Morangos" },
+                { nome: "Bolo de Chocolate 50%", tamanho: "M (2.5 KG)", preco: 175.00, descricaoResumo: "Bolo de Chocolate 50% com Morangos - M (2.5 KG)", descricao:"Com Morangos" },
+                { nome: "Bolo de Chocolate 50%", tamanho: "G (3.5 KG)", preco: 245.00, descricaoResumo: "Bolo de Chocolate 50% com Morangos - G (3.5 KG)", descricao:"Com Morangos" },
+                { nome: "Bolo de Delicia de Abacaxi", tamanho: "P (1.5 KG)", preco: 105.00, descricaoResumo: "Bolo de Delicia de Abacaxi - P (1.5 KG)", descricao: "" },
+                { nome: "Bolo de Delicia de Abacaxi", tamanho: "M (2.5 KG)", preco: 175.00, descricaoResumo: "Bolo de Delicia de Abacaxi - M (2.5 KG)", descricao: "" },
+                { nome: "Bolo de Delicia de Abacaxi", tamanho: "G (3.5 KG)", preco: 245.00, descricaoResumo: "Bolo de Delicia de Abacaxi - G (3.5 KG)", descricao: "" },
+                { nome: "Bolo de Morango", tamanho: "P (1.5 KG)", preco: 105.00, descricaoResumo: "Bolo de Morango com Brigadeiro Branco e Chantinhinho - P (1.5 KG)", descricao: "Com Recheio de Brigadeiro Branco e Cobertura de Chantininho" },
+                { nome: "Bolo de Morango", tamanho: "M (2.5 KG)", preco: 175.00, descricaoResumo: "Bolo de Morango com Brigadeiro Branco e Chantinhinho - M (2.5 KG)", descricao: "Com Recheio de Brigadeiro Branco e Cobertura de Chantininho" },
+                { nome: "Bolo de Morango", tamanho: "G (3.5 KG)", preco: 245.00, descricaoResumo: "Bolo de Morango com Brigadeiro Branco e Chantinhinho - G (3.5 KG)", descricao: "Com Recheio de Brigadeiro Branco e Cobertura de Chantininho" },
+                { nome: "Bolo Prestígio", tamanho: "P (1.5 KG)", preco: 105.00, descricaoResumo: "Bolo Prestígio - P (1.5 KG)", descricao: "" },
+                { nome: "Bolo Prestígio", tamanho: "M (2.5 KG)", preco: 175.00, descricaoResumo: "Bolo Prestígio - M (2.5 KG)", descricao: "" },
+                { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: "" },
+            ];
+    
+            const itensPratoSalgado = [
+                { nome: "Empadão de Bacalhau", tamanho: "P (1 KG)", preco: 95.00, descricaoResumo: "Empadão de Bacalhau - P (1 KG)", descricao: "" },
+                { nome: "Empadão de Bacalhau", tamanho: "M (2 KG)", preco: 190.00, descricaoResumo: "Empadão de Bacalhau - M (2 KG)", descricao: "" },
+                { nome: "Empadão de Bacalhau", tamanho: "G (3 KG)", preco: 285.00, descricaoResumo: "Empadão de Bacalhau - G (3 KG)", descricao: "" },
+                { nome: "Empadão de Carne", tamanho: "P (1 KG)", preco: 65.00, descricaoResumo: "Empadão de Carne - P (1 KG)", descricao: "" },
+                { nome: "Empadão de Carne", tamanho: "M (2 KG)", preco: 130.00, descricaoResumo: "Empadão de Carne - M (2 KG)", descricao: "" },
+                { nome: "Empadão de Carne", tamanho: "G (3 KG)", preco: 195.00, descricaoResumo: "Empadão de Carne - G (3 KG)", descricao: "" },
+                { nome: "Empadão de Camarão", tamanho: "P (1 KG)", preco: 95.00, descricaoResumo: "Empadão de Camarão - P (1 KG)", descricao: "" },
+                { nome: "Empadão de Camarão", tamanho: "M (2 KG)", preco: 190.00, descricaoResumo: "Empadão de Camarão - M (2 KG)", descricao: "" },
+                { nome: "Empadão de Camarão", tamanho: "G (3 KG)", preco: 285.00, descricaoResumo: "Empadão de Camarão - G (3 KG)", descricao: "" },
+                { nome: "Empadão de Frango", tamanho: "P (1 KG)", preco: 65.00, descricaoResumo: "Empadão de Frango - P (1 KG)", descricao: "" },
+                { nome: "Empadão de Frango", tamanho: "M (2 KG)", preco: 130.00, descricaoResumo: "Empadão de Frango - M (2 KG)", descricao: "" },
+                { nome: "Empadão de Frango", tamanho: "G (3 KG)", preco: 195.00, descricaoResumo: "Empadão de Frango - G (3 KG)", descricao: "" },
+                { nome: "Fricassê de Frango", tamanho: "P (1 KG)", preco: 75.00, descricaoResumo: "Fricassê de Frango - P (1 KG)", descricao: "" },
+                { nome: "Fricassê de Frango", tamanho: "M (2 KG)", preco: 150.00, descricaoResumo: "Fricassê de Frango - M (2 KG)", descricao: "" },
+                { nome: "Fricassê de Frango", tamanho: "G (3 KG)", preco: 225.00, descricaoResumo: "Fricassê de Frango - G (3 KG)", descricao: "" },
+                { nome: "Quiche de Camarão", tamanho: "P (1 KG)", preco: 110.00, descricaoResumo: "Quiche de Camarão - P (1 KG)", descricao: "" },
+                { nome: "Quiche de Camarão", tamanho: "M (2 KG)", preco: 220.00, descricaoResumo: "Quiche de Camarão - M (2 KG)", descricao: "" },
+                { nome: "Quiche de Camarão", tamanho: "G (3 KG)", preco: 330.00, descricaoResumo: "Quiche de Camarão - G (3 KG)", descricao: "" },
+                { nome: "Quiche de Frango", tamanho: "P (1 KG)", preco: 80.00, descricaoResumo: "Quiche de Frango - P (1 KG)", descricao: "Com Alho Poró" },
+                { nome: "Quiche de Frango", tamanho: "M (2 KG)", preco: 160.00, descricaoResumo: "Quiche de Frango - M (2 KG)", descricao: "Com Alho Poró" },
+                { nome: "Quiche de Frango", tamanho: "G (3 KG)", preco: 240.00, descricaoResumo: "Quiche de Frango - G (3 KG)", descricao: "Com Alho Poró" },
+                { nome: "Rocambole de Bacalhau", tamanho: "P (1 KG)", preco: 95.00, descricaoResumo: "Rocambole de Bacalhau - P (1 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de dBacalhau", tamanho: "M (2 KG)", preco: 190.00, descricaoResumo: "Rocambole de Bacalhau - M (2 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Bacalhau", tamanho: "G (3 KG)", preco: 285.00, descricaoResumo: "Rocambole de Bacalhau - G (3 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Camarão", tamanho: "P (1 KG)", preco: 95.00, descricaoResumo: "Rocambole de Camarão - P (1 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Camarão", tamanho: "M (2 KG)", preco: 190.00, descricaoResumo: "Rocambole de Camarão - M (2 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Camarão", tamanho: "G (3 KG)", preco: 285.00, descricaoResumo: "Rocambole de Camarão - G (3 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Carne", tamanho: "P (1 KG)", preco: 65.00, descricaoResumo: "Rocambole de Carne - P (1 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Carne", tamanho: "M (2 KG)", preco: 130.00, descricaoResumo: "Rocambole de Carne - M (2 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Carne", tamanho: "G (3 KG)", preco: 195.00, descricaoResumo: "Rocambole de Carne - G (3 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Frango", tamanho: "P (1 KG)", preco: 65.00, descricaoResumo: "Rocambole de Frango - P (1 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Frango", tamanho: "M (2 KG)", preco: 130.00, descricaoResumo: "Rocambole de Frango - M (2 KG)", descricao: "Massa de Batata" },
+                { nome: "Rocambole de Frango", tamanho: "G (3 KG)", preco: 195.00, descricaoResumo: "Rocambole de Frango - G (3 KG)", descricao: "Massa de Batata" },
+                { nome: "Torta Salgada de Bacalhau", tamanho: "P (1 KG)", preco: 95.00, descricaoResumo: "Torta Salgada de Bacalhau - P (1 KG)", descricao: "" },
+                { nome: "Torta Salgada de Bacalhau", tamanho: "M (2 KG)", preco: 190.00, descricaoResumo: "Torta Salgada de Bacalhau - M (2 KG)", descricao: "" },
+                { nome: "Torta Salgada de Bacalhau", tamanho: "G (3 KG)", preco: 285.00, descricaoResumo: "Torta Salgada de Bacalhau - G (3 KG)", descricao: "" },
+                { nome: "Torta Salgada de Carne", tamanho: "P (1 KG)", preco: 65.00, descricaoResumo: "Torta Salgada de Carne - P (1 KG)", descricao: "" },
+                { nome: "Torta Salgada de Carne", tamanho: "M (2 KG)", preco: 130.00, descricaoResumo: "Torta Salgada de Carne - M (2 KG)", descricao: "" },
+                { nome: "Torta Salgada de Carne", tamanho: "G (3 KG)", preco: 195.00, descricaoResumo: "Torta Salgada de Carne - G (3 KG)", descricao: "" },
+                { nome: "Torta Salgada de Camarão", tamanho: "P (1 KG)", preco: 95.00, descricaoResumo: "Torta Salgada de Camarão - P (1 KG)", descricao: "" },
+                { nome: "Torta Salgada de Camarão", tamanho: "M (2 KG)", preco: 190.00, descricaoResumo: "Torta Salgada de Camarão - M (2 KG)", descricao: "" },
+                { nome: "Torta Salgada de Camarão", tamanho: "G (3 KG)", preco: 285.00, descricaoResumo: "Torta Salgada de Camarão - G (3 KG)", descricao: "" },
+                { nome: "Torta Salgada de Frango", tamanho: "P (1 KG)", preco: 65.00, descricaoResumo: "Torta Salgada de Frango - P (1 KG)", descricao: "" },
+                { nome: "Torta Salgada de Frango", tamanho: "M (2 KG)", preco: 130.00, descricaoResumo: "Torta Salgada de Frango - M (2 KG)", descricao: "" },
+                { nome: "Torta Salgada de Frango", tamanho: "G (3 KG)", preco: 195.00, descricaoResumo: "Torta Salgada de Frango - G (3 KG)", descricao: "" },
+            ];
+    
+            // Função para criar as tabelas dinamicamente
+            function criarTabelaGrupo(grupo, idTabela, nomeGrupo) {
+                const tabela = document.getElementById(idTabela);
+                if (!tabela) return;
+    
+                grupo.forEach(item => {
+                    const tr = document.createElement("tr");
+                    const qtdOutamanho = item.tamanho || item.min;
+    
+                    tr.innerHTML = `
+                        <td>
+                            <div class="item-nome">${item.nome}</div>
+                            <div class="descricao">${item.descricao}</div>
+                        </td>
+                        <td>${qtdOutamanho}</td>
+                        <td>R$ ${item.preco.toFixed(2).replace(".", ",")}</td>
+                        <td>
+                            <div class="quantidade-container">
+                                <input type="number" min="0" value="0" data-min="${item.min || 1}" data-preco="${item.preco}" data-resumo="${item.descricaoResumo}" data-grupo="${nomeGrupo}" class="quantidade-input">
+                                <div class="erro" style="color: red; display: none; font-size: 0.9em; margin-top: 5px;">
+                                    Valor mínimo do item é de ${item.min} unidades.
+                                </div>
+                            </div>
+                        </td>
+                    `;
+                    tabela.appendChild(tr);
+                });
+            }
+    
+            // Chamando a função para cada grupo de itens
+            const gruposItens = {
+                "tabela-salfri": { itens: itensSalgadoFrito, nomeGrupo: "Salgados Fritos" },
+                "tabela-salgado-forno": { itens: itensSalgadoForno, nomeGrupo: "Salgados Assados" },
+                "tabela-salgado-vegetariano": { itens: itensSalgadoVegetariano, nomeGrupo: "Salgados Vegetarianos" },
+                "tabela-bolo-tradicional": { itens: itensBoloTradicional, nomeGrupo: "Bolos Tradicionais" },
+                "tabela-bolo-especial": { itens: itensBoloEspecial, nomeGrupo: "Bolos Especiais" },
+                "tabela-prato-salgado": { itens: itensPratoSalgado, nomeGrupo: "Pratos Salgados" },
+            };
+    
+            for (const idTabela in gruposItens) {
+                criarTabelaGrupo(gruposItens[idTabela].itens, idTabela, gruposItens[idTabela].nomeGrupo);
+            }
+    
+            // Função para atualizar o total dos pedidos e gerar o resumo do site
+            function atualizarTotal() {
+                let total = 0;
+                const resumoItens = document.getElementById("resumo-itens");
+                if (!resumoItens) return;
+                resumoItens.innerHTML = '';
+    
+                const gruposResumo = {}; // Objeto para agrupar os itens pelos grupos
+    
+                document.querySelectorAll(".quantidade-input").forEach(input => {
+                    const quantidade = parseInt(input.value) || 0;
+                    const min = parseInt(input.getAttribute("data-min")) || 1;
+                    const preco = parseFloat(input.getAttribute("data-preco")) || 0;
+                    const descricaoResumo = input.getAttribute("data-resumo");
+                    const grupo = input.getAttribute("data-grupo");
+                    const erroElemento = input.closest('.quantidade-container').querySelector('.erro');
+    
+                    if (quantidade > 0 && quantidade < min) {
+                        erroElemento.style.display = 'block';
+                    } else {
+                        erroElemento.style.display = 'none';
+                    }
+    
+                    if (quantidade >= min) {
+                        const totalItem = quantidade * preco;
+                        total += totalItem;
+    
+                        // Agrupando itens pelo grupo
+                        if (!gruposResumo[grupo]) {
+                            gruposResumo[grupo] = [];
+                        }
+                        gruposResumo[grupo].push({ descricao: descricaoResumo, quantidade, totalItem });
+                    }
+                });
+    
+                // Exibindo o resumo agrupado
+                for (const grupo in gruposResumo) {
+                    resumoItens.innerHTML += `<strong>${grupo}:</strong><br>`;
+                    gruposResumo[grupo].forEach(item => {
+                        resumoItens.innerHTML += `${item.descricao} - ${item.quantidade} unidades - R$ ${item.totalItem.toFixed(2).replace(".", ",")}<br>`;
+                    });
+                    resumoItens.innerHTML += `<br>`; // Separando grupos
+                }
+    
+                document.getElementById("resumo-total").textContent = `Total: R$ ${total.toFixed(2).replace(".", ",")}`;
+                document.getElementById("resumo").style.display = total > 0 ? 'block' : 'none';
+            }
+    
+            // Atualizar total sempre que a quantidade for alterada
+            document.querySelectorAll(".quantidade-input").forEach(input => {
+                input.addEventListener("input", atualizarTotal);
+            });
+    
+            // Função para enviar o pedido para o WhatsApp
+            function fazerPedido() {
+                let resumoWhatsapp = "Olá, Favu!\nGostaria de saber a disponibilidade e encomendar os itens abaixo:\n\n";
+                let totalPedido = 0;
+    
+                const gruposResumo = {}; // Objeto para agrupar os itens pelos grupos
+    
+                document.querySelectorAll(".quantidade-input").forEach(input => {
+                    const quantidade = parseInt(input.value) || 0;
+                    const min = parseInt(input.getAttribute("data-min")) || 1;
+                    const preco = parseFloat(input.getAttribute("data-preco")) || 0;
+                    const descricaoResumo = input.getAttribute("data-resumo");
+                    const grupo = input.getAttribute("data-grupo");
+    
+                    if (quantidade >= min) {
+                        const totalItem = quantidade * preco;
+                        totalPedido += totalItem;
+    
+                        // Agrupando itens pelo grupo
+                        if (!gruposResumo[grupo]) {
+                            gruposResumo[grupo] = [];
+                        }
+                        gruposResumo[grupo].push({ descricao: descricaoResumo, quantidade });
+                    }
+                });
+    
+                // Exibindo o resumo para o WhatsApp
+                for (const grupo in gruposResumo) {
+                    resumoWhatsapp += `*${grupo}:*\n`;
+                    gruposResumo[grupo].forEach(item => {
+                        resumoWhatsapp += `${item.descricao} - ${item.quantidade} unidades\n`;
+                    });
+                    resumoWhatsapp += `\n`; // Separando grupos
+                }
+    
+                resumoWhatsapp += `\n*Total*: R$ ${totalPedido.toFixed(2).replace(".", ",")}`;
+                let mensagemWhatsapp = encodeURIComponent(resumoWhatsapp);
+                let linkWhatsapp = `https://wa.me/558197346237?text=${mensagemWhatsapp}`;
+                window.open(linkWhatsapp, '_blank');
+            }
+    
+            // Adiciona evento para fazer o pedido
+            const fazerPedidoButton = document.querySelector('button[onclick="fazerPedido()"]');
+            if (fazerPedidoButton) {
+                fazerPedidoButton.addEventListener("click", fazerPedido);
+            }
+    
+            // Função para voltar e recarregar a página
+            const voltarButton = document.getElementById("voltar");
+            if (voltarButton) {
+                voltarButton.addEventListener("click", () => window.location.reload());
+            }
+        });
     </script>
+    
+    
 </body>
 </html>
