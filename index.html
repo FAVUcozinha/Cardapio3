@@ -785,6 +785,29 @@
                 // Envia a mensagem via WhatsApp
                 const whatsappLink = `https://wa.me/558199591775?text=${encodeURIComponent(resumoWhatsapp)}`;
                 window.open(whatsappLink, '_blank');
+    
+                // Resetando os campos após a confirmação
+                resetarCampos();
+            }
+    
+            // Função para resetar os campos após a confirmação do pedido
+            function resetarCampos() {
+                // Limpa os campos de quantidade
+                document.querySelectorAll(".quantidade-input").forEach(input => {
+                    input.value = 0;
+                });
+    
+                // Limpa o resumo do pedido
+                const resumoItens = document.getElementById("resumo-itens");
+                const resumoTotal = document.getElementById("resumo-total");
+                if (resumoItens) resumoItens.innerHTML = '';
+                if (resumoTotal) resumoTotal.textContent = '';
+    
+                // Fecha o popup
+                fecharPopup();
+    
+                // Opcional: se você quiser voltar ao início da página
+                window.scrollTo(0, 0);
             }
     
             // Adiciona evento para fazer o pedido
