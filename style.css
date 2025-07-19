@@ -1,0 +1,364 @@
+caption {
+    display: block;
+    color: #E09F41; /* Muda a cor do título do grupo */
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Especificando a cor dos itens e quantidades para os grupos específicos */
+table#tabela-bolo-tradicional th:nth-child(1),
+table#tabela-bolo-tradicional th:nth-child(4),
+table#tabela-bolo-especial th:nth-child(1),
+table#tabela-bolo-especial th:nth-child(4),
+table#tabela-prato-salgado th:nth-child(1),
+table#tabela-prato-salgado th:nth-child(4) {
+    color: #E09F41;
+}
+
+table#tabela-bolo-tradicional td:nth-child(1),
+table#tabela-bolo-tradicional td:nth-child(4),
+table#tabela-bolo-especial td:nth-child(1),
+table#tabela-bolo-especial td:nth-child(4),
+table#tabela-prato-salgado td:nth-child(1),
+table#tabela-prato-salgado td:nth-child(4) {
+    color: #E09F41;
+}
+
+table caption {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+@font-face {
+    font-family: 'Basic Choice 2';
+    src: url('fonts/Basic Choice 2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: #E09F41;
+    text-align: center;
+    color: white;
+    font-family: 'Basic Choice 2', Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
+header img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
+header img + img {
+    margin-top: 5px;
+}
+
+#grupo-imagem {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 5px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th:nth-child(1), th:nth-child(4) {
+    color: #E09F41;
+}
+
+th:nth-child(2), th:nth-child(3) {
+    color: white;
+}
+
+select, input {
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #7FB1C8;
+    border: none;
+    color: #F4E6CB;
+    cursor: pointer;
+    font-family: 'Basic Choice 2', Arial, sans-serif;
+    width: 100%;
+    font-size: 18px;
+}
+
+#resumo {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+    background-color: #F4E6CB;
+    color: #1A2B0F;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+tr {
+    border-bottom: 1px solid #F4E6CB;
+}
+
+input[type="number"] {
+    width: 60px;
+    height: 40px;
+    border: 2px solid #F4E6CB;
+    background-color: #F4E6CB;
+    color: #000;
+    font-family: 'Basic Choice 2', Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+.erro {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+footer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+footer img {
+    width: 100%;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    header img {
+        content: url('topodesktop.png');
+        width: 100%;
+    }
+
+    footer img {
+        content: url('rodadesktop.png');
+        width: 100%;
+    }
+
+    header img:nth-of-type(2) {
+        content: url('MENU.png');
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    header img:nth-of-type(2) {
+        width: 80%;
+        margin: 0 auto;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    header img, footer img {
+        width: 100%;
+    }
+}
+
+#botao-pedido {
+    margin-bottom: 50px;
+}
+
+#resumo h2 {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.resumo-itens {
+    text-align: left;
+    padding-left: 20px;
+}
+
+footer {
+    margin-top: 30px;
+}
+
+#resumo-total {
+    text-align: right;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#botao-voltar {
+    background-color: #7FB1C8;
+    color: #F4E6CB;
+    font-size: 18px;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    font-family: 'Basic Choice 2', Arial, sans-serif;
+}
+
+.item-nome {
+    font-weight: bold;
+    color: inherit;  /* Herda a cor do elemento pai */
+}
+
+.descricao {
+    font-size: 12px; /* Ajuste o tamanho conforme necessário */
+    margin-top: 4px; /* Espaçamento entre o nome e a descrição */
+    color: inherit;  /* Herda a cor do nome */
+}
+
+/* Estilos do Popup */
+.popup {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-conteudo {
+    background-color: #F4E6CB;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.popup h2 {
+    color: #000; /* Título do Popup em branco */
+}
+
+.popup input, 
+.popup select {
+    width: 100%; /* Garante que os campos de entrada tenham a largura dos botões */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Mantém o formato arredondado */
+    font-family: 'Basic Choice 2', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.popup button {
+    padding: 10px;
+    background-color: #7FB1C8;
+    color: #FFF;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.popup button:hover {
+    background-color: #6f97b2;
+}
+
+.fechar {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.fechar:hover,
+.fechar:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo para os títulos de Nome, Data e Hora no Popup */
+.popup label {
+    color: #000; /* Cor preta para os títulos */
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 767px) {
+    /* Garantir que os campos de data e horário tenham a mesma largura exata do campo "forma de pagamento" */
+    .popup input[type="date"],
+    .popup input[type="time"],
+    .popup select {
+        width: 100%; /* Largura do campo de 100% do espaço disponível */
+        padding: 12px; /* Ajuste do padding para alinhar */
+        margin: 10px 0; /* Margem entre os campos */
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-family: 'Basic Choice 2', Arial, sans-serif;
+        font-size: 16px;
+        background-color: #fff;
+        color: #000;
+        box-sizing: border-box;
+        height: 50px; /* Altura dos campos */
+    }
+
+    /* Garantir que o campo "forma de pagamento" tenha a mesma largura dos outros campos */
+    .popup select {
+        width: 100%; /* Largura igual para todos os campos */
+        text-align: center; /* Centralizar o texto dentro do campo */
+    }
+
+    /* Ajustar a largura do popup para a versão mobile */
+    .popup-conteudo {
+        width: 90%; /* Largura do popup */
+        max-width: 350px; /* Limite máximo para a largura */
+    }
+
+    /* Estilo do botão */
+    .popup button {
+        padding: 12px;
+        background-color: #7FB1C8;
+        color: #FFF;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+}

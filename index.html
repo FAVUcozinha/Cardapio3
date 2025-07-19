@@ -419,6 +419,20 @@
             <tbody id="tabela-salgado-vegetariano"></tbody>
         </table>
 
+        <!-- Grupo Doces -->
+        <img src="DOCS.png" alt="Doces" id="grupo-imagem">
+        <table id="tabela-doces">
+        <thead>
+            <caption>Doces</caption>
+            <tr>
+                <th>ITEM</th>
+                <th>QNT. MÍN.</th>
+                <th>UNID.</th>
+                <th>QUANTIDADE</th>
+            </tr>
+            <tbody id="tabela-doces"></tbody>
+        </table>
+
         <!-- Grupo Bolos Tradicionais -->
         <img src="BOLTRA.png" alt="Bolos Tradicionais" id="grupo-imagem">
         <table>
@@ -630,6 +644,17 @@
                 { nome: "Torta Salgada de Frango", tamanho: "M (2 KG)", preco: 130.00, descricaoResumo: "Torta Salgada de Frango - M (2 KG)", descricao: "" },
                 { nome: "Torta Salgada de Frango", tamanho: "G (3 KG)", preco: 195.00, descricaoResumo: "Torta Salgada de Frango - G (3 KG)", descricao: "" },
             ];
+            
+            const itensDoces = [
+                { nome: "Beijinho-casado", min: 25, preco: 1.00, descricaoResumo: "", descricao: "" },
+                { nome: "Bem-casado", min: 25, preco: 1.00, descricaoResumo: "", descricao: "" },
+                { nome: "Brigadeiro", min: 25, preco: 1.00, descricaoResumo: "", descricao: "" },
+                { nome: "Mini Tortilete", min: 25, preco: 1.20, descricaoResumo: "", descricao: "" },
+                { nome: "Moranguinho", min: 25, preco: 1.00, descricaoResumo: "", descricao: "" },
+                { nome: "Ouriço", min: 25, preco: 1.10, descricaoResumo: "", descricao: "" },
+                { nome: "Queijadinha", min: 25, preco: 1.20, descricaoResumo: "", descricao: "" },
+                { nome: "Surpresa de uva", min: 25, preco: 1.20, descricaoResumo: "", descricao: "" },
+            ];
     
             // Função para criar as tabelas dinamicamente
             function criarTabelaGrupo(grupo, idTabela, nomeGrupo) {
@@ -665,6 +690,7 @@
                 "tabela-salfri": { itens: itensSalgadoFrito, nomeGrupo: "Salgados Fritos" },
                 "tabela-salgado-forno": { itens: itensSalgadoForno, nomeGrupo: "Salgados Assados" },
                 "tabela-salgado-vegetariano": { itens: itensSalgadoVegetariano, nomeGrupo: "Salgados Vegetarianos" },
+                "tabela-doces": { itens: itensDoces, nomeGrupo: "Doces" },
                 "tabela-bolo-tradicional": { itens: itensBoloTradicional, nomeGrupo: "Bolos Tradicionais" },
                 "tabela-bolo-especial": { itens: itensBoloEspecial, nomeGrupo: "Bolos Especiais" },
                 "tabela-prato-salgado": { itens: itensPratoSalgado, nomeGrupo: "Pratos Salgados" },
