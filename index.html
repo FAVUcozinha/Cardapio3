@@ -925,7 +925,10 @@
             { nome: "Bolo de Ninho trufado", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - G (3.5 KG)", descricao: "Com chocolate Branco"},
             { nome: "Bolo Prestígio", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Prestígio - P (1.5 KG)", descricao: ""},
             { nome: "Bolo Prestígio", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Prestígio - M (2.5 KG)", descricao: ""},
-            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: ""},
+            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)",             
+            { nome: "Bolo Red velvet", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Red velvet - P (1.5 KG)", descricao: ""},
+            { nome: "Bolo Red velvet", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Red velvet - M (2.5 KG)", descricao: ""},
+            { nome: "Bolo Red velvet", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Red Velvet - G (3.5 KG)", descricao: ""},
         ]).map(item => ({...item, id: generateId(item.nome, item.tamanho)}));
 
         const itensDoces = addGroupKeys([
@@ -948,44 +951,44 @@
         ]).map(item => ({...item, id: generateId(item.nome)}));
 
         const itensSalgadoFrito = addGroupKeys([
-            { nome: "Bolinho de Bacalhau", min: 25, preco: 1.30, descricaoResumo: "Bolinho de Bacalhau", descricao: "" },
-            { nome: "Bolinho de Calabresa", min: 25, preco: 1.00, descricaoResumo: "Bolinho de Calabresa", descricao: "" },
-            { nome: "Bolinho de Charque", min: 25, preco: 1.20, descricaoResumo: "Bolinho de Charque", descricao: "" },
-            { nome: "Coxinha de Frango", min: 25, preco: 1.00, descricaoResumo: "Coxinha de Frango", descricao: "" },
-            { nome: "Croquete Misto", min: 25, preco: 1.00, descricaoResumo: "Croquere Misto", descricao: "De Presunto Com Queijo" },
-            { nome: "Camarão Empanado", min: 25, preco: 1.50, descricaoResumo: "Camarão Empanado", descricao: "" },
-            { nome: "Mini Quibe", min: 25, preco: 1.10, descricaoResumo: "Mini Quibe de Carne C/ Queijo", descricao: "De Carne Com Queijo" },
-            { nome: "Pastel de Festa", min: 25, preco: 1.30, descricaoResumo: "Pastel de Festa", descricao: "" },
+            { nome: "Bolinho de Bacalhau", min: 20, preco: 1.30, descricaoResumo: "Bolinho de Bacalhau", descricao: "" },
+            { nome: "Bolinho de Calabresa", min: 20, preco: 1.00, descricaoResumo: "Bolinho de Calabresa", descricao: "" },
+            { nome: "Bolinho de Charque", min: 20, preco: 1.20, descricaoResumo: "Bolinho de Charque", descricao: "" },
+            { nome: "Coxinha de Frango", min: 20, preco: 1.00, descricaoResumo: "Coxinha de Frango", descricao: "" },
+            { nome: "Croquete Misto", min: 20, preco: 1.00, descricaoResumo: "Croquere Misto", descricao: "De Presunto Com Queijo" },
+            { nome: "Camarão Empanado", min: 20, preco: 1.50, descricaoResumo: "Camarão Empanado", descricao: "" },
+            { nome: "Mini Quibe", min: 20, preco: 1.10, descricaoResumo: "Mini Quibe de Carne C/ Queijo", descricao: "De Carne Com Queijo" },
+            { nome: "Pastel de Festa", min: 20, preco: 1.30, descricaoResumo: "Pastel de Festa", descricao: "" },
         ]).map(item => ({...item, id: generateId(item.nome)}));
 
         const itensSalgadoForno = addGroupKeys([
-            { nome: "Canudinho de Frango", min: 25, preco: 1.50, descricaoResumo: "Canudinho de Frango", descricao: "Massa Caseira Assada no Forno" },
-            { nome: "Empadinha de Bacalhau", min: 25, preco: 1.30, descricaoResumo: "Empadinha de Bacalhau", descricao: "" },
-            { nome: "Empadinha de Camarão", min: 25, preco: 1.30, descricaoResumo: "Empadinha de Camarão", descricao: "" },
-            { nome: "Empadinha de Carne", min: 25, preco: 1.00, descricaoResumo: "Empadinha de Carne", descricao: "" },
-            { nome: "Empadinha de Frango", min: 25, preco: 1.00, descricaoResumo: "Empadinha de Frango", descricao: "" },
-            { nome: "Mini Folhado de Carne", min: 25, preco: 2.20, descricaoResumo: "Mini Folhado de Carne", descricao: "" },
-            { nome: "Mini Folhado de Frango", min: 25, preco: 2.20, descricaoResumo: "Mini Folhado de Frango", descricao: "" },
+            { nome: "Canudinho de Frango", min: 20, preco: 1.50, descricaoResumo: "Canudinho de Frango", descricao: "Massa Caseira Assada no Forno" },
+            { nome: "Empadinha de Bacalhau", min: 20, preco: 1.30, descricaoResumo: "Empadinha de Bacalhau", descricao: "" },
+            { nome: "Empadinha de Camarão", min: 20, preco: 1.30, descricaoResumo: "Empadinha de Camarão", descricao: "" },
+            { nome: "Empadinha de Carne", min: 20, preco: 1.00, descricaoResumo: "Empadinha de Carne", descricao: "" },
+            { nome: "Empadinha de Frango", min: 20, preco: 1.00, descricaoResumo: "Empadinha de Frango", descricao: "" },
+            { nome: "Mini Folhado de Carne", min: 20, preco: 2.20, descricaoResumo: "Mini Folhado de Carne", descricao: "" },
+            { nome: "Mini Folhado de Frango", min: 20, preco: 2.20, descricaoResumo: "Mini Folhado de Frango", descricao: "" },
             { nome: "Mini Folhado de Queijo", min: 20, preco: 2.20, descricaoResumo: "Mini Folhado de Queijo", descricao: "" },
-            { nome: "Mini Folhado de Pizza", min: 25, preco: 2.20, descricaoResumo: "Mini Folhado de Pizza", descricao: "" },
-            { nome: "Mini Enroladinho", min: 25, preco: 1.00, descricaoResumo: "Mini Enroladinho de salsicha", descricao: "Com Salsicha" },
-            { nome: "Pastel de Forno de Bacalhau", min: 25, preco: 1.30, descricaoResumo: "Pastel de Forno de Bacalhau", descricao: "" },
-            { nome: "Pastel de Forno de Camarão", min: 25, preco: 1.40, descricaoResumo: "Pastel de Forno de Camarão", descricao: "" },
-            { nome: "Pastel de Forno de Carne", min: 25, preco: 1.00, descricaoResumo: "Pastel de Forno de Carne", descricao: "" },
-            { nome: "Pastel de Forno de Frango", min: 25, preco: 1.00, descricaoResumo: "Pastel de Forno de Frango", descricao: "" },
-            { nome: "Pastel de Forno de Queijo", min: 25, preco: 1.00, descricaoResumo: "Pastel de Forno de Queijo", descricao: "" },
-            { nome: "Pastel de Forno de Pizza", min: 25, preco: 1.00, descricaoResumo: "Pastel de Forno de Pizza", descricao: "" },
+            { nome: "Mini Folhado de Pizza", min: 20, preco: 2.20, descricaoResumo: "Mini Folhado de Pizza", descricao: "" },
+            { nome: "Mini Enroladinho", min: 20, preco: 1.00, descricaoResumo: "Mini Enroladinho de salsicha", descricao: "Com Salsicha" },
+            { nome: "Pastel de Forno de Bacalhau", min: 20, preco: 1.30, descricaoResumo: "Pastel de Forno de Bacalhau", descricao: "" },
+            { nome: "Pastel de Forno de Camarão", min: 20, preco: 1.40, descricaoResumo: "Pastel de Forno de Camarão", descricao: "" },
+            { nome: "Pastel de Forno de Carne", min: 20, preco: 1.00, descricaoResumo: "Pastel de Forno de Carne", descricao: "" },
+            { nome: "Pastel de Forno de Frango", min: 20, preco: 1.00, descricaoResumo: "Pastel de Forno de Frango", descricao: "" },
+            { nome: "Pastel de Forno de Queijo", min: 20, preco: 1.00, descricaoResumo: "Pastel de Forno de Queijo", descricao: "" },
+            { nome: "Pastel de Forno de Pizza", min: 20, preco: 1.00, descricaoResumo: "Pastel de Forno de Pizza", descricao: "" },
         ]).map(item => ({...item, id: generateId(item.nome)}));
         
         const itensSalgadoVegetariano = addGroupKeys([
-            { nome: "Canudinho de Soja", min: 25, preco: 1.50, descricaoResumo: "Canudinho de Soja", descricao: "Massa Caseira Assada no Forno" },
-            { nome: "Coxinha de Soja", min: 25, preco: 1.00, descricaoResumo: "Coxinha de SOJA", descricao: "" },
-            { nome: "Coxinha de Caju *", min: 25, preco: 1.20, descricaoResumo: "Coxinha de CAJU", descricao: "* CONSULTAR DISPONIBILIDADE *" },
-            { nome: "Empadinha de Creme de Aborbinha", min: 25, preco: 1.00, descricaoResumo: "Empadinha de Aborbinha Com Queijo", descricao: "Com Queijo" },
-            { nome: "Empadinha de Falso Camarão", min: 25, preco: 1.00, descricaoResumo: "Empadinha de Falso Camarão", descricao: "A Base de Milho e Leite de Coco" },
-            { nome: "Pastel de Festa Vegetariano", min: 25, preco: 1.30, descricaoResumo: "Pastel de Festa de SOJA", descricao: "De Soja" },
-            { nome: "Pastel de Forno Creme de Abobrinha", min: 25, preco: 1.00, descricaoResumo: "Pastel de Forno Abobrinha C/ Queijo", descricao: "Com Queijo" },
-            { nome: "Pastel de Forno Caju *", min: 25, preco: 1.30, descricaoResumo: "Pastel de Forno Caju", descricao: "* CONSULTAR DISPONIBILIDADE *" },
+            { nome: "Canudinho de Soja", min: 20, preco: 1.50, descricaoResumo: "Canudinho de Soja", descricao: "Massa Caseira Assada no Forno" },
+            { nome: "Coxinha de Soja", min: 20, preco: 1.00, descricaoResumo: "Coxinha de SOJA", descricao: "" },
+            { nome: "Coxinha de Caju *", min: 20, preco: 1.20, descricaoResumo: "Coxinha de CAJU", descricao: "* CONSULTAR DISPONIBILIDADE *" },
+            { nome: "Empadinha de Creme de Aborbinha", min: 20, preco: 1.00, descricaoResumo: "Empadinha de Aborbinha Com Queijo", descricao: "Com Queijo" },
+            { nome: "Empadinha de Falso Camarão", min: 20, preco: 1.00, descricaoResumo: "Empadinha de Falso Camarão", descricao: "A Base de Milho e Leite de Coco" },
+            { nome: "Pastel de Festa Vegetariano", min: 20, preco: 1.30, descricaoResumo: "Pastel de Festa de SOJA", descricao: "De Soja" },
+            { nome: "Pastel de Forno Creme de Abobrinha", min: 20, preco: 1.00, descricaoResumo: "Pastel de Forno Abobrinha C/ Queijo", descricao: "Com Queijo" },
+            { nome: "Pastel de Forno Caju *", min: 20, preco: 1.30, descricaoResumo: "Pastel de Forno Caju", descricao: "* CONSULTAR DISPONIBILIDADE *" },
         ]).map(item => ({...item, id: generateId(item.nome)}));
 
         const itensPratoSalgado = addGroupKeys([
