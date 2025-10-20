@@ -1275,12 +1275,12 @@
                 const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
                 const isItemValido = quantidade >= min;
                 
-                // Verifica erros de mínimo para não incluir o item no total bruto
+                // Verifica erros de mínimo para não incluir o item no total bruto (apenas se a quantidade for > 0)
                 if (quantidade > 0 && isIndividualMinCheck && !isItemValido) {
                     temErroDeMinimo = true;
                 }
 
-                if (quantidade > 0 && !temErroDeMinimo) {
+                if (quantidade > 0 && (!isIndividualMinCheck || isItemValido)) {
                      const totalItem = quantidade * preco;
                      totalBrutoPedido += totalItem; // Total de todo o pedido (válido para o FAVU10)
                 }
@@ -1472,7 +1472,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL - MANTIDA
+        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL - CORRIGIDA (2 BLOCOS)
         // -----------------------------------------------------
         function atualizarTotal() {
             let totalBruto = 0;
@@ -1512,20 +1512,21 @@
                 totaisPorGrupo[grupo].quantidade += quantidade;
                 totaisPorGrupo[grupo].items.push({ input, quantidade, min, preco, descricaoResumo, itemId, grupo });
 
-                // 2. Validação MÍNIMO INDIVIDUAL 
-                if (isIndividualMinCheck) {
-                    if (quantidade > 0 && quantidade < min) {
-                        // EXIBE MENSAGEM DE ERRO E NÃO INCLUI NO TOTAL DO PEDIDO
+                // 2. Validação MÍNIMO INDIVIDUAL (Apenas exibe o erro visual na tabela principal)
+                // CORRIGIDO: Só verifica se a quantidade for maior que zero
+                if (isIndividualMinCheck && quantidade > 0) {
+                    if (quantidade < min) {
+                        // EXIBE MENSAGEM DE ERRO
                         if (erroElemento) {
                             erroElemento.textContent = `Mín ${min} Unid.`;
                             erroElemento.style.display = 'block';
                         }
                     } else {
-                        // OCULTA MENSAGEM
+                        // OCULTA MENSAGEM se for válido
                         if (erroElemento) erroElemento.style.display = 'none';
                     }
                 } else {
-                    // Oculta a mensagem de erro individual em categorias que não a usam (ex: Cookies e Bolos)
+                    // Oculta a mensagem se a quantidade for 0 ou não for para checar individualmente
                     if (erroElemento) erroElemento.style.display = 'none'; 
                 }
             });
@@ -1563,6 +1564,8 @@
                         let shouldIncludeInTotal = true;
                         
                         // Checa o erro individual *apenas* para categorias Doces/Salgados Fritos/Forno/Vegetarianos
+                        // CORRIGIDO: A verificação de erro individual foi separada para garantir que o erro só seja marcado 
+                        // se a quantidade for > 0 E < min.
                         if (isIndividualMinCheck && !isItemValido) {
                             shouldIncludeInTotal = false;
                             temErroDeMinimo = true; // Marca erro se falhar no min individual
@@ -1613,10 +1616,10 @@
                             </div>
                             <div class="resumo-item-input-group">
                                 <input type="number" 
-                                            min="0" 
-                                            value="${item.quantidade}" 
-                                            data-item-id="${item.itemId}" 
-                                            onblur="atualizarQuantidadeDireta(this)">
+                                             min="0" 
+                                             value="${item.quantidade}" 
+                                             data-item-id="${item.itemId}" 
+                                             onblur="atualizarQuantidadeDireta(this)">
                                 un.
                             </div>
                             <div class="resumo-item-actions">
@@ -1641,7 +1644,7 @@
                  if (totalBruto === 0 && cupomMessage) {
                      cupomMessage.textContent = '';
                      cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
-                   }
+                    }
             }
 
             // 3. Controla a visibilidade do botão "Fazer Pedido" no pop-up (AJUSTADO: SÓ PRECISA DE totalBruto > 0)
@@ -1665,7 +1668,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - MANTIDA A VALIDAÇÃO
+        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - CORRIGIDA (2 BLOCOS)
         // -----------------------------------------------------
         function abrirResumoPopup() {
             // Garante que a mensagem do cupom seja exibida corretamente ao abrir
@@ -1771,7 +1774,8 @@
 
                     let shouldIncludeInTotal = true;
 
-                    if (isIndividualMinCheck && !isItemValido) {
+                    // CORRIGIDO: Agora só marca erro se a quantidade for maior que zero E menor que o mínimo.
+                    if (item.quantidade > 0 && isIndividualMinCheck && !isItemValido) { 
                          shouldIncludeInTotal = false;
                          temErroDeMinimo = true;
                     }
@@ -1788,14 +1792,10 @@
                         }
                         gruposResumo[grupo].push({ descricao: item.descricaoResumo, quantidade: item.quantidade });
                     }
-                    
-                    if (item.quantidade > 0 && isIndividualMinCheck && !isItemValido) {
-                         temErroDeMinimo = true;
-                    }
                 });
             }
             
-            // ************ VALIDAÇÃO DE BLOQUEIO MANTIDA ************
+            // ************ VALIDAÇÃO DE BLOQUEIO CORRIGIDA ************
             if (temErroDeMinimo) {
                  alert("Por favor, ajuste as quantidades mínimas do seu pedido antes de confirmar.");
                  atualizarTotal(); // Recarrega os totais e erros
