@@ -186,20 +186,12 @@
 
         /* Cores (AJUSTADAS) */
         
-        /* 1. Remove a sobrescrita para Laranja no cabeçalho QUANTIDADE (4ª coluna ou 3ª em Cookies) */
-        /* Comentada ou Removida a linha original: 
-        table#tabela-bolo-tradicional th:nth-child(4), table#tabela-bolo-especial th:nth-child(4), table#tabela-prato-salgado th:nth-child(4), table#tabela-doces th:nth-child(4), table#tabela-cookies th:nth-child(3), table#tabela-salfri th:nth-child(4), table#tabela-salgado-forno th:nth-child(4), table#tabela-salgado-vegetariano th:nth-child(4) { color: #E09F41; } */
-        
         /* A cor dos dados das colunas QUANTIDADE (td) é mantida em branco */
         table#tabela-bolo-tradicional td:nth-child(4), table#tabela-bolo-especial td:nth-child(4), table#tabela-prato-salgado td:nth-child(4), table#tabela-doces td:nth-child(4), table#tabela-cookies td:nth-child(3), table#tabela-salfri td:nth-child(4), table#tabela-salgado-forno td:nth-child(4), table#tabela-salgado-vegetariano td:nth-child(4) { color: white; }
 
         /* 2. Cor de todos os cabeçalhos de coluna (ITEM, QNT. MÍN/tamanho, UNID., QUANTIDADE) é definida como BRANCA */
         th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4) { color: white; }
         
-        /* 3. Remove a sobrescrita para Laranja no cabeçalho ITEM */
-        /* Comentada ou Removida a linha original:
-        table#tabela-bolo-tradicional th:nth-child(1), table#tabela-bolo-especial th:nth-child(1), table#tabela-prato-salgado th:nth-child(1), table#tabela-doces th:nth-child(1), table#tabela-cookies th:nth-child(1), table#tabela-salfri th:nth-child(1), table#tabela-salgado-forno th:nth-child(1), table#tabela-salgado-vegetariano th:nth-child(1) { color: #E09F41; } */
-
         /* Corrige o item em si para a cor correta (MANTIDA EM BRANCO) */
         table#tabela-bolo-tradicional td:nth-child(1), table#tabela-bolo-especial td:nth-child(1), table#tabela-prato-salgado td:nth-child(1), table#tabela-doces td:nth-child(1), table#tabela-cookies td:nth-child(1), table#tabela-salfri td:nth-child(1), table#tabela-salgado-forno td:nth-child(1), table#tabela-salgado-vegetariano td:nth-child(1) { color: white; }
 
@@ -933,7 +925,7 @@
             { nome: "Bolo de Ninho trufado", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - G (3.5 KG)", descricao: "Com chocolate Branco"},
             { nome: "Bolo Prestígio", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Prestígio - P (1.5 KG)", descricao: ""},
             { nome: "Bolo Prestígio", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Prestígio - M (2.5 KG)", descricao: ""},
-            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: ""},      
+            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: ""},     
             { nome: "Bolo Red velvet", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Red velvet - P (1.5 KG)", descricao: ""},
             { nome: "Bolo Red velvet", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Red velvet - M (2.5 KG)", descricao: ""},
             { nome: "Bolo Red velvet", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Red Velvet - G (3.5 KG)", descricao: ""},
@@ -1072,7 +1064,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÃO DE CRIAÇÃO DE TABELAS - MANTIDA
+        // FUNÇÃO DE CRIAÇÃO DE TABELAS - AJUSTADA (value="0")
         // -----------------------------------------------------
         function criarTabelaGrupo(grupo, idTabela, nomeGrupo) {
             const tbody = document.getElementById(idTabela).querySelector('tbody');
@@ -1112,12 +1104,14 @@
                     }
                     
                     if (item.groupKey === grupoAtual && i < grupo.length - 1 && grupo[i+1].groupKey === grupoAtual) {
-                                 tr.classList.add('item-group-active');
+                                     tr.classList.add('item-group-active');
                     }
                 }
                 
-                // Usamos value="" para que o campo inicial fique vazio
-                const inputHtml = `<input type="number" value="" data-min="${item.min || 1}" data-preco="${item.preco}" data-resumo="${item.descricaoResumo}" data-grupo="${nomeGrupo}" data-item-id="${itemId}" class="quantidade-input">`;
+                // ***************************************************************
+                // ALTERAÇÃO 1: Define o valor padrão do input como "0"
+                // ***************************************************************
+                const inputHtml = `<input type="number" value="0" data-min="${item.min || 1}" data-preco="${item.preco}" data-resumo="${item.descricaoResumo}" data-grupo="${nomeGrupo}" data-item-id="${itemId}" class="quantidade-input">`;
 
                 let erroHtml = '';
                 // Verifica se é uma das categorias que deve usar o erro individual
@@ -1276,7 +1270,8 @@
 
             document.querySelectorAll(".quantidade-input").forEach(input => {
                 const grupo = input.getAttribute("data-grupo");
-                const quantidade = parseInt(input.value) || 0;
+                // Usamos parseInt(input.value) || 0 para garantir que "0" seja tratado como 0
+                const quantidade = parseInt(input.value) || 0; 
                 const preco = parseFloat(input.getAttribute("data-preco")) || 0;
                 const min = parseInt(input.getAttribute("data-min")) || 1;
                 
@@ -1425,7 +1420,7 @@
         function excluirItem(itemId) {
             const inputNoMain = document.querySelector(`.quantidade-input[data-item-id="${itemId}"]`);
             if (inputNoMain) {
-                inputNoMain.value = ""; 
+                inputNoMain.value = "0"; // Alterado para '0' (zero) para manter a coerência visual
                 // Dispara o evento 'input' para atualizar a interface imediatamente
                 inputNoMain.dispatchEvent(new Event('input')); 
             }
@@ -1450,13 +1445,11 @@
             let novaQuantidade = parseInt(valorInput) || 0;
 
             const inputNoMain = document.querySelector(`.quantidade-input[data-item-id="${itemId}"]`);
-            // Nota: Não é necessário forçar o valor mínimo aqui, pois a função `atualizarTotal`
-            // irá apenas sinalizar o erro e o valor do campo será respeitado.
 
             if (inputNoMain) {
                 if (novaQuantidade <= 0) {
-                    novaQuantidade = ""; 
-                    inputElement.value = ""; 
+                    novaQuantidade = 0; 
+                    inputElement.value = "0"; 
                 } else {
                     inputElement.value = novaQuantidade; 
                 }
@@ -1650,9 +1643,9 @@
                  // Garante que o campo de cupom não mantenha a mensagem de sucesso se o total for 0
                  const cupomMessage = document.getElementById('cupom-message');
                  if (totalBruto === 0 && cupomMessage) {
-                      cupomMessage.textContent = '';
-                      cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
-                    }
+                     cupomMessage.textContent = '';
+                     cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
+                     }
             }
 
             // 3. Controla a visibilidade do botão "Fazer Pedido" no pop-up (AJUSTADO: SÓ PRECISA DE totalBruto > 0)
@@ -1715,7 +1708,7 @@
         
         function resetarCampos() {
             document.querySelectorAll(".quantidade-input").forEach(input => {
-                input.value = "";
+                input.value = "0"; // Alterado para "0" ao resetar
                 // Esconde erros individuais
                 const erroElemento = input.closest('.quantidade-container').querySelector('.erro-item-unico');
                 if (erroElemento) erroElemento.style.display = 'none';
@@ -1807,6 +1800,12 @@
             }
             
             // ************ VALIDAÇÃO DE BLOQUEIO CORRIGIDA ************
+            if (totalPedido === 0) {
+                alert("Seu pedido está vazio. Adicione itens para confirmar.");
+                fecharPopup();
+                return;
+            }
+
             if (temErroDeMinimo) {
                  alert("Por favor, ajuste as quantidades mínimas do seu pedido antes de confirmar.");
                  atualizarTotal(); // Recarrega os totais e erros
@@ -1874,20 +1873,22 @@
             document.querySelectorAll(".quantidade-input").forEach(input => {
                 input.addEventListener("input", atualizarTotal);
                 
-                // NOVO: Adiciona o listener de blur para aplicar a validação imediatamente após sair do campo, 
-                // SEM CORRIGIR o valor, apenas sinalizando.
+                // ***************************************************************
+                // ALTERAÇÃO 2: Ajuste no evento blur para manter o valor "0"
+                // ***************************************************************
                 input.addEventListener("blur", function() {
                     const quantidade = parseInt(this.value) || 0;
                     const min = parseInt(this.getAttribute("data-min")) || 1;
                     const grupo = this.getAttribute("data-grupo");
                     
-                    // Validação: Doces, Salgados Fritos, Salgados Forno e Salgados Vegetarianos
-                    const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
-
-                    if (quantidade <= 0) {
-                        this.value = "";
+                    // Se o valor for menor ou igual a 0 ou vazio, defina como "0"
+                    // Caso contrário, use o valor numérico (evita NaN)
+                    if (this.value === "" || quantidade <= 0) {
+                        this.value = "0"; 
+                    } else {
+                        this.value = quantidade.toString();
                     }
-                    
+
                     // NUNCA CORRIGE O VALOR: Apenas chama o atualizarTotal para exibir a mensagem de erro.
                     atualizarTotal();
                 });
