@@ -184,15 +184,23 @@
         caption { display: none; }
         header img + img { display: none; }
 
-        /* Cores (Mantidas) */
-        /* Cores para a 4a coluna (QUANTIDADE) que é a 3a em cookies */
-        table#tabela-bolo-tradicional th:nth-child(4), table#tabela-bolo-especial th:nth-child(4), table#tabela-prato-salgado th:nth-child(4), table#tabela-doces th:nth-child(4), table#tabela-cookies th:nth-child(3), table#tabela-salfri th:nth-child(4), table#tabela-salgado-forno th:nth-child(4), table#tabela-salgado-vegetariano th:nth-child(4) { color: #E09F41; }
+        /* Cores (AJUSTADAS) */
+        
+        /* 1. Remove a sobrescrita para Laranja no cabeçalho QUANTIDADE (4ª coluna ou 3ª em Cookies) */
+        /* Comentada ou Removida a linha original: 
+        table#tabela-bolo-tradicional th:nth-child(4), table#tabela-bolo-especial th:nth-child(4), table#tabela-prato-salgado th:nth-child(4), table#tabela-doces th:nth-child(4), table#tabela-cookies th:nth-child(3), table#tabela-salfri th:nth-child(4), table#tabela-salgado-forno th:nth-child(4), table#tabela-salgado-vegetariano th:nth-child(4) { color: #E09F41; } */
+        
+        /* A cor dos dados das colunas QUANTIDADE (td) é mantida em branco */
         table#tabela-bolo-tradicional td:nth-child(4), table#tabela-bolo-especial td:nth-child(4), table#tabela-prato-salgado td:nth-child(4), table#tabela-doces td:nth-child(4), table#tabela-cookies td:nth-child(3), table#tabela-salfri td:nth-child(4), table#tabela-salgado-forno td:nth-child(4), table#tabela-salgado-vegetariano td:nth-child(4) { color: white; }
 
-        /* Cor para a coluna ITEM e UNID. (Preço) */
-        th:nth-child(1), th:nth-child(2), th:nth-child(3) { color: white; }
-        /* Corrige o item em si para a cor correta */
-        table#tabela-bolo-tradicional th:nth-child(1), table#tabela-bolo-especial th:nth-child(1), table#tabela-prato-salgado th:nth-child(1), table#tabela-doces th:nth-child(1), table#tabela-cookies th:nth-child(1), table#tabela-salfri th:nth-child(1), table#tabela-salgado-forno th:nth-child(1), table#tabela-salgado-vegetariano th:nth-child(1) { color: #E09F41; }
+        /* 2. Cor de todos os cabeçalhos de coluna (ITEM, QNT. MÍN/tamanho, UNID., QUANTIDADE) é definida como BRANCA */
+        th:nth-child(1), th:nth-child(2), th:nth-child(3), th:nth-child(4) { color: white; }
+        
+        /* 3. Remove a sobrescrita para Laranja no cabeçalho ITEM */
+        /* Comentada ou Removida a linha original:
+        table#tabela-bolo-tradicional th:nth-child(1), table#tabela-bolo-especial th:nth-child(1), table#tabela-prato-salgado th:nth-child(1), table#tabela-doces th:nth-child(1), table#tabela-cookies th:nth-child(1), table#tabela-salfri th:nth-child(1), table#tabela-salgado-forno th:nth-child(1), table#tabela-salgado-vegetariano th:nth-child(1) { color: #E09F41; } */
+
+        /* Corrige o item em si para a cor correta (MANTIDA EM BRANCO) */
         table#tabela-bolo-tradicional td:nth-child(1), table#tabela-bolo-especial td:nth-child(1), table#tabela-prato-salgado td:nth-child(1), table#tabela-doces td:nth-child(1), table#tabela-cookies td:nth-child(1), table#tabela-salfri td:nth-child(1), table#tabela-salgado-forno td:nth-child(1), table#tabela-salgado-vegetariano td:nth-child(1) { color: white; }
 
 
@@ -925,7 +933,7 @@
             { nome: "Bolo de Ninho trufado", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - G (3.5 KG)", descricao: "Com chocolate Branco"},
             { nome: "Bolo Prestígio", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Prestígio - P (1.5 KG)", descricao: ""},
             { nome: "Bolo Prestígio", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Prestígio - M (2.5 KG)", descricao: ""},
-            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: ""},     
+            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: ""},      
             { nome: "Bolo Red velvet", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Red velvet - P (1.5 KG)", descricao: ""},
             { nome: "Bolo Red velvet", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Red velvet - M (2.5 KG)", descricao: ""},
             { nome: "Bolo Red velvet", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Red Velvet - G (3.5 KG)", descricao: ""},
@@ -1104,7 +1112,7 @@
                     }
                     
                     if (item.groupKey === grupoAtual && i < grupo.length - 1 && grupo[i+1].groupKey === grupoAtual) {
-                                tr.classList.add('item-group-active');
+                                 tr.classList.add('item-group-active');
                     }
                 }
                 
@@ -1472,7 +1480,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL - CORRIGIDA (2 BLOCOS)
+        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL - MANTIDA
         // -----------------------------------------------------
         function atualizarTotal() {
             let totalBruto = 0;
@@ -1567,8 +1575,8 @@
                         // CORRIGIDO: A verificação de erro individual foi separada para garantir que o erro só seja marcado 
                         // se a quantidade for > 0 E < min.
                         if (isIndividualMinCheck && !isItemValido) {
-                            shouldIncludeInTotal = false;
-                            temErroDeMinimo = true; // Marca erro se falhar no min individual
+                             shouldIncludeInTotal = false;
+                             temErroDeMinimo = true; // Marca erro se falhar no min individual
                         }
                         
                         // Checa o erro de grupo para Cookies (ou outros grupos com minTotal > 0)
@@ -1642,8 +1650,8 @@
                  // Garante que o campo de cupom não mantenha a mensagem de sucesso se o total for 0
                  const cupomMessage = document.getElementById('cupom-message');
                  if (totalBruto === 0 && cupomMessage) {
-                     cupomMessage.textContent = '';
-                     cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
+                      cupomMessage.textContent = '';
+                      cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
                     }
             }
 
@@ -1731,6 +1739,9 @@
         }
 
         function confirmarPedido() {
+            // Linha riscada para separar o resumo dos itens das informações do cliente
+            const linhaSeparadora = "\n\n*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*\n\n";
+
             let resumoWhatsapp = "Olá, Favu!\nGostaria de saber a disponibilidade para encomendar os itens abaixo:\n\n\n*_- Resumo do pedido_:*\n\n";
             let totalPedido = 0; // Será preenchido com o total Bruto (sem desconto)
             let temErroDeMinimo = false;
@@ -1835,7 +1846,10 @@
             const dataParts = data.split("-");
             const dataFormatada = `${dataParts[2]}/${dataParts[1]}/${dataParts[0]}`;
 
-            resumoWhatsapp += `\n\n\n\n_*- Informações do Pedido:*_\n\n*Nome*: ${nome}\n*Data da entrega*: ${dataFormatada}\n*Horário da entrega*: ${horario}\n*Forma de pagamento*: ${pagamento}`;
+            // INCLUI A NOVA LINHA SEPARADORA AQUI
+            resumoWhatsapp += linhaSeparadora;
+            
+            resumoWhatsapp += `_*- Informações do Pedido:*_\n\n*Nome*: ${nome}\n*Data da entrega*: ${dataFormatada}\n*Horário da entrega*: ${horario}\n*Forma de pagamento*: ${pagamento}`;
 
             const whatsappLink = `https://wa.me/558195256641?text=${encodeURIComponent(resumoWhatsapp)}`;
             window.open(whatsappLink, '_blank');
