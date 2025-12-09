@@ -23,7 +23,7 @@
         }
 
         body {
-            background-color: #E09F41;
+            background-color: #ED704F;
             text-align: center;
             color: white;
             font-family: 'Basic Choice 2', Arial, sans-serif;
@@ -56,7 +56,7 @@
         /* ---------------------------------------------------------------------- */
         
         #sticky-nav-container {
-            background-color: #E09F41; 
+            background-color: #ED704F; 
             position: sticky; 
             top: 0; 
             z-index: 10; 
@@ -103,7 +103,7 @@
         
         /* Estilo da aba ATIVA */
         #categorias-horizontal a.active-link {
-            background-color: #7FB1C8; 
+            background-color: #399466; 
             color: white;
         }
 
@@ -312,7 +312,7 @@
         
         /* Cor do botão de rodapé "Ver Pedido" alterada para o AZUL ESPECÍFICO */
         #summary-button {
-            background-color: #7FB1C8; /* AZUL SOLICITADO */
+            background-color: #399466; /* AZUL SOLICITADO */
             color: white; 
             padding: 12px 20px;
             border-radius: 10px;
@@ -355,7 +355,7 @@
         button { 
             padding: 10px; 
             border-radius: 20px; 
-            background-color: #7FB1C8; 
+            background-color: #399466; 
             border: none; 
             color: #FFF; 
             cursor: pointer; 
@@ -372,7 +372,7 @@
 
         /* MODIFICAÇÃO: Adicionando margem inferior ao botão VOLTAR */
         #botao-voltar { 
-            background-color: #7FB1C8; 
+            background-color: #399466; 
             color: #FFF; 
             font-size: 18px; 
             border: none; 
@@ -452,7 +452,7 @@
         }
         /* Separador visual */
         #popup-resumo-total {
-             border-top: 1px dashed #7FB1C8; 
+             border-top: 1px dashed #399466; 
              padding-top: 10px;
              margin-top: 10px;
         }
@@ -476,7 +476,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center; /* Alinha tudo verticalmente */
-            border-bottom: 1px dashed #7FB1C8; 
+            border-bottom: 1px dashed #399466; 
             padding: 8px 0;
             font-size: 14px;
         }
@@ -557,7 +557,7 @@
             flex-grow: 1;
             padding: 10px;
             border-radius: 10px;
-            border: 1px solid #7FB1C8;
+            border: 1px solid #399466;
             background-color: white;
             color: #1A2B0F;
             box-sizing: border-box;
@@ -570,7 +570,7 @@
             padding: 10px 0; 
             margin: 0;
             font-size: 14px;
-            background-color: #E09F41; /* Laranja para destaque */
+            background-color: #399466; /* Laranja para destaque */
             border-radius: 10px; 
             height: 40px; /* Garante a altura para alinhar com o input */
         }
@@ -614,7 +614,7 @@
             /* Cor de fundo branca, conforme solicitação (como o campo de cupom) */
             background-color: white; 
             color: #1A2B0F;
-            border: 1px solid #7FB1C8; /* Borda azul padrão do site */
+            border: 1px solid #399466; /* Borda azul padrão do site */
             padding: 10px;
             border-radius: 10px;
             font-family: 'Basic Choice 2', Arial, sans-serif;
@@ -631,14 +631,14 @@
 
         /* PADRONIZAÇÃO dos botões (CONFIRMAR/EDITAR/CONTINUAR COMPRANDO) com o botão azul principal */
         #form-pedido button {
-            background-color: #7FB1C8; /* Cor azul do "CONTINUAR COMPRANDO" */
+            background-color: #399466; /* Cor azul do "CONTINUAR COMPRANDO" */
             box-shadow: 0 4px #4c7e93; /* Sombra do "CONTINUAR COMPRANDO" */
             margin-top: 15px; /* Espaçamento padrão */
         }
 
         /* O botão "CONTINUAR COMPRANDO" (era Cancelar) mantém o estilo do botão azul */
         #form-pedido button:nth-of-type(2) { 
-            background-color: #7FB1C8;
+            background-color: #399466;
             box-shadow: 0 4px #4c7e93;
         }
         /* ---------------------------------------------------------------------- */
@@ -646,8 +646,8 @@
 
         /* Media Queries (Mantidos) */
         @media (min-width: 768px) {
-            header img:first-child { content: url('topodesktop.png'); }
-            footer img { content: url('rodadesktop.png'); }
+            header img:first-child { content: url('toponatal.png'); }
+            footer img { content: url('rodanatal.png'); }
             #fixed-summary {
                  max-width: 600px; 
             }
@@ -662,7 +662,7 @@
 <body>
     <div class="container">
         <header>
-            <img src="topo.png" alt="Topo">
+            <img src="toponatal.png" alt="Topo">
         </header>
 
         <div id="sticky-nav-container">
@@ -790,7 +790,7 @@
             <div id="resumo-total"></div>
         </div>
         
-        <button id="botao-voltar" onclick="window.location.replace('https://favucozinha.github.io/Favu/')">Voltar</button>
+        <button id="botao-voltar" onclick="window.location.replace('https://favucozinha.github.io/Inicio/')">Voltar</button>
         
         <div id="popup-resumo" class="popup">
             <div class="popup-conteudo">
@@ -855,7 +855,7 @@
         </div>
 
         <footer>
-            <img src="roda2.png" alt="Rodapé">
+            <img src="rodanatal.png" alt="Rodapé">
         </footer>
     </div>
 
@@ -864,9 +864,18 @@
         let cupomAplicado = { codigo: null, desconto: 0, mensagem: '' };
         
         // NOVAS CONSTANTES DE CUPOM
-        const CUPOM_COOKIES10 = 'COOKIES10'; 
-        const CUPOM_FAVU10 = 'FAVU10OFF'; 
-        const CUPOM_FAVUCOOKIES = 'FAVUCOOKIES'; 
+        const CUPOM_COOKIES10 = 'COOKIES10';
+        const CUPOM_FAVU10 = 'FAVU10OFF';
+        const CUPOM_FAVUCOOKIES = 'FAVUCOOKIES';
+        
+        // ***************************************************************
+        // REGRA DE MINIMO: Mini Cookie (ID) e Grupos (Doces, Salgados)
+        // ***************************************************************
+        // Lista de grupos que devem usar a VALIDAÇÃO DE MÍNIMO INDIVIDUAL (Doces e Salgados)
+        const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
+
+        // ID do Mini Cookie para tratamento especial (gerado pela função generateId)
+        const MINI_COOKIE_ID = 'mini-cookie';
         
         // -----------------------------------------------------
         // DADOS DOS PRODUTOS - MANTIDOS
@@ -882,7 +891,7 @@
         const addGroupKeys = (itens) => {
             return itens.map(item => ({
                 ...item,
-                groupKey: item.tamanho ? item.nome : item.id 
+                groupKey: item.tamanho ? item.nome : item.id
             }));
         };
 
@@ -890,9 +899,9 @@
             { nome: "Bolo de Bem-Casado", tamanho: "P (1.5 KG)", preco: 100.00, min: 1, descricaoResumo: "Bolo de Bem-Casado - P (1.5 KG)", descricao: ""},
             { nome: "Bolo de Bem-Casado", tamanho: "M (2.5 KG)", preco: 160.00, min: 1, descricaoResumo: "Bolo de Bem-Casado - M (2.5 KG)", descricao: ""},
             { nome: "Bolo de Bem-Casado", tamanho: "G (3.5 KG)", preco: 220.00, min: 1, descricaoResumo: "Bolo de Bem-Casado - G (3.5 KG)", descricao: ""},
-            { nome: "Bolo de Doce de Leite", tamanho: "P (1.5 KG)", preco: 90.00, min: 1, descricaoResumo: "Bolo de Doce de Leite e Crocante de Amendoim - P (1.5 KG)", descricao: "Com Crocante de Amendoim"},
-            { nome: "Bolo de Doce de Leite", tamanho: "M (2.5 KG)", preco: 150.00, min: 1, descricaoResumo: "Bolo de Doce de Leite e Crocante de Amendoim - M (2.5 KG)", descricao: "Com Crocante de Amendoim"},
-            { nome: "Bolo de Doce de Leite", tamanho: "G (3.5 KG)", preco: 210.00, min: 1, descricaoResumo: "Bolo de Doce de Leite e Crocante de Amendoim - G (3.5 KG)", descricao: "Com Crocante de Amendoim"},
+            { nome: "Bolo de Doce de Leite", tamanho: "P (1.5 KG)", preco: 90.00, min: 1, descricaoResumo: "Bolo de Doce de Leite e Crocante de Amendoin - P (1.5 KG)", descricao: "Com Crocante de Amendoin"},
+            { nome: "Bolo de Doce de Leite", tamanho: "M (2.5 KG)", preco: 150.00, min: 1, descricaoResumo: "Bolo de Doce de Leite e Crocante de Amendoin - M (2.5 KG)", descricao: "Com Crocante de Amendoin"},
+            { nome: "Bolo de Doce de Leite", tamanho: "G (3.5 KG)", preco: 210.00, min: 1, descricaoResumo: "Bolo de Doce de Leite e Crocante de Amendoin - G (3.5 KG)", descricao: "Com Crocante de Amendoin"},
             { nome: "Bolo de Chocolate", tamanho: "P (1.5 KG)", preco: 90.00, min: 1, descricaoResumo: "Bolo de Chocolate 50% Cacau - P (1.5 KG)", descricao: "Com chocolate 50% cacau"},
             { nome: "Bolo de Chocolate", tamanho: "M (2.5 KG)", preco: 150.00, min: 1, descricaoResumo: "Bolo de Chocolate 50% Cacau - M (2.5 KG)", descricao: "Com chocolate 50% cacau"},
             { nome: "Bolo de Chocolate", tamanho: "G (3.5 KG)", preco: 210.00, min: 1, descricaoResumo: "Bolo de Chocolate 50% Cacau - G (3.5 KG)", descricao: "Com chocolate 50% cacau"},
@@ -905,6 +914,8 @@
         ]).map(item => ({...item, id: generateId(item.nome, item.tamanho)}));
         
         const itensBoloEspecial = addGroupKeys([
+            { nome: "🎄Cheesecake tradicional", tamanho: "2.1 KG", preco: 150.00, min: 1, descricaoResumo: "Cheesecake tradicional - 2.1 KG", descricao: "Com Goiabada"},
+            { nome: "🎄Cheesecake Doce de leite", tamanho: "2.1 KG", preco: 155.00, min: 1, descricaoResumo: "Cheesecake Doce de leite - 2.1 KG", descricao: "Com Caramelo Salgado"},
             { nome: "Bolo de Ameixa", tamanho: "P (1.5 KG)", preco: 110.00, min: 1, descricaoResumo: "Bolo de Ameixa e Chocolate Branco - P (1.5 KG)", descricao: "Com Chocolate Branco"},
             { nome: "Bolo de Ameixa", tamanho: "M (2.5 KG)", preco: 180.00, min: 1, descricaoResumo: "Bolo de Ameixa e Chocolate Branco - M (2.5 KG)", descricao: "Com Chocolate Branco"},
             { nome: "Bolo de Ameixa", tamanho: "G (3.5 KG)", preco: 250.00, min: 1, descricaoResumo: "Bolo de Ameixa e Chocolate Branco - G (3.5 KG)", descricao: "Com Chocolate Branco"},
@@ -912,23 +923,26 @@
             { nome: "Bolo de Café e Doce de Leite", tamanho: "M (2.5 KG)", preco: 180.00, min: 1, descricaoResumo: "Bolo de Café Com Doce de Leite e Chocolate Amargo - M (2.5 KG)", descricao:"Com Chocolate Amargo"},
             { nome: "Bolo de Café e Doce de Leite", tamanho: "G (3.5 KG)", preco: 250.00, min: 1, descricaoResumo: "Bolo de Café Com Doce de Leite e Chocolate Amargo - G (3.5 KG)", descricao:"Com Chocolate Amargo"},
             { nome: "Bolo de Chocolate 50%", tamanho: "P (1.5 KG)", preco: 110.00, min: 1, descricaoResumo: "Bolo de Chocolate 50% com Morangos - P (1.5 KG)", descricao:"Com Morangos"},
-            { nome: "Bolo de Chocolate 50%", tamanho: "M (2.5 KG)", preco: 180.00, min: 1, descricaoResumo: "Bolo de Chocolate 50% com Morangos - M (2.5 KG)", descricao:"Com Morangos"},
-            { nome: "Bolo de Chocolate 50%", tamanho: "G (3.5 KG)", preco: 250.00, min: 1, descricaoResumo: "Bolo de Chocolate 50% com Morangos - G (3.5 KG)", descricao:"Com Morangos"},
+            { nome: "Bolo de Chocolate 50%", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo de Chocolate 50% com Morangos - M (2.5 KG)", descricao:"Com Morangos"},
+            { nome: "Bolo de Chocolate 50%", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo de Chocolate 50% com Morangos - G (3.5 KG)", descricao:"Com Morangos"},
             { nome: "Bolo de Delicia de Abacaxi", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo de Delicia de Abacaxi - P (1.5 KG)", descricao: ""},
             { nome: "Bolo de Delicia de Abacaxi", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo de Delicia de Abacaxi - M (2.5 KG)", descricao: ""},
             { nome: "Bolo de Delicia de Abacaxi", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo de Delicia de Abacaxi - G (3.5 KG)", descricao: ""},
             { nome: "Bolo de Morango", tamanho: "P (1.5 KG)", preco: 110.00, min: 1, descricaoResumo: "Bolo de Morango com Brigadeiro Branco e Chantinhinho - P (1.5 KG)", descricao: "Com Recheio de Brigadeiro Branco e Cobertura de Chantininho"},
-            { nome: "Bolo de Morango", tamanho: "M (2.5 KG)", preco: 180.00, min: 1, descricaoResumo: "Bolo de Morango com Brigadeiro Branco e Chantinhinho - M (2.5 KG)", descricao: "Com Recheio de Brigadeiro Branco e Cobertura de Chantininho"},
-            { nome: "Bolo de Morango", tamanho: "G (3.5 KG)", preco: 250.00, min: 1, descricaoResumo: "Bolo de Morango com Brigadeiro Branco e Chantinhinho - G (3.5 KG)", descricao: "Com Recheio de Brigadeiro Branco e Cobertura de Chantininho"},
+            { nome: "Bolo de Morango", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo de Morango com Brigadeiro Branco e Chantinhinho - M (2.5 KG)", descricao: "Com Recheio de Brigadeiro Branco e Cobertura de Chantininho"},
+            { nome: "Bolo de Morango", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo de Morango com Brigadeiro Branco e Chantinhinho - G (3.5 KG)", descricao: "Com Recheio de Brigadeiro Branco e Cobertura de Chantininho"},
             { nome: "Bolo de Ninho trufado", tamanho: "P (1.5 KG)", preco: 110.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - P (1.5 KG)", descricao: "Com chocolate Branco"},
-            { nome: "Bolo de Ninho trufado", tamanho: "M (2.5 KG)", preco: 180.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - M (2.5 KG)", descricao: "Com chocolate Branco"},
-            { nome: "Bolo de Ninho trufado", tamanho: "G (3.5 KG)", preco: 250.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - G (3.5 KG)", descricao: "Com chocolate Branco"},
+            { nome: "Bolo de Ninho trufado", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - M (2.5 KG)", descricao: "Com chocolate Branco"},
+            { nome: "Bolo de Ninho trufado", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo de Ninho trufado - G (3.5 KG)", descricao: "Com chocolate Branco"},
+            { nome: "🎄Bolo de Noiva", tamanho: "P (1.5 KG)", preco: 130.00, min: 1, descricaoResumo: "Bolo de noiva - P (1.5 KG)", descricao: "Com cobertura de glacê "},
+            { nome: "🎄Bolo de Noiva", tamanho: "M (2.5 KG)", preco: 215.00, min: 1, descricaoResumo: "Bolo de noiva - M (2.5 KG)", descricao: "Com cobertura de glacê "},
+            { nome: "🎄Bolo de Noiva", tamanho: "G (3.5 KG)", preco: 300.00, min: 1, descricaoResumo: "Bolo de noiva - G (3.5 KG)", descricao: "Com cobertura de glacê "},
             { nome: "Bolo Prestígio", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Prestígio - P (1.5 KG)", descricao: ""},
             { nome: "Bolo Prestígio", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Prestígio - M (2.5 KG)", descricao: ""},
-            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: ""},     
-            { nome: "Bolo Red velvet", tamanho: "P (1.5 KG)", preco: 110.00, min: 1, descricaoResumo: "Bolo Red velvet - P (1.5 KG)", descricao: ""},
-            { nome: "Bolo Red velvet", tamanho: "M (2.5 KG)", preco: 180.00, min: 1, descricaoResumo: "Bolo Red velvet - M (2.5 KG)", descricao: ""},
-            { nome: "Bolo Red velvet", tamanho: "G (3.5 KG)", preco: 250.00, min: 1, descricaoResumo: "Bolo Red Velvet - G (3.5 KG)", descricao: ""},
+            { nome: "Bolo Prestígio", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Prestígio - G (3.5 KG)", descricao: ""},      
+            { nome: "Bolo Red velvet", tamanho: "P (1.5 KG)", preco: 105.00, min: 1, descricaoResumo: "Bolo Red velvet - P (1.5 KG)", descricao: ""},
+            { nome: "Bolo Red velvet", tamanho: "M (2.5 KG)", preco: 175.00, min: 1, descricaoResumo: "Bolo Red velvet - M (2.5 KG)", descricao: ""},
+            { nome: "Bolo Red velvet", tamanho: "G (3.5 KG)", preco: 245.00, min: 1, descricaoResumo: "Bolo Red Velvet - G (3.5 KG)", descricao: ""},
         ]).map(item => ({...item, id: generateId(item.nome, item.tamanho)}));
 
         const itensDoces = addGroupKeys([
@@ -943,11 +957,11 @@
         ]).map(item => ({...item, id: generateId(item.nome)}));
 
         const itensCookies = addGroupKeys([
-            // MINIMO DE CADA COOKIE AGORA É 1. A VALIDAÇÃO DE 3 UNIDADES VAI PARA O GRUPO.
+            // MIN: 20 para o Mini Cookie, conforme solicitado. O ID gerado será 'mini-cookie'
+            // Os demais têm min: 1 e a checagem é feita no mínimo de grupo (3)
             { nome: "Cookie Tradicional", min: 1, preco: 12.00, descricaoResumo: "Cookie Tradicional", descricao: "Massa de baunilha com pedaços de chocolate meio amargo" },
             { nome: "Cookie Red Velvet", min: 1, preco: 12.00, descricaoResumo: "Cookie Red Velvet", descricao: "Massa de baunilha com toque de cream cheese, cacau vermelho e pedaços de chocolate branco" },
             { nome: "Cookie Black", min: 1, preco: 12.00, descricaoResumo: "Cookie Black", descricao: "Massa feita com cacau 100% e pedaços de chocolate meio amargo" },
-            { nome: "Cookie Romeu e Julieta", min: 1, preco: 12.00, descricaoResumo: "Cookie Romeu e Julieta", descricao: "Massa de baunilha com pedacinhos de queijo, recheado com cream cheese e goiabada" },
         ]).map(item => ({...item, id: generateId(item.nome)}));
 
         const itensSalgadoFrito = addGroupKeys([
@@ -1022,9 +1036,12 @@
             { nome: "Rocambole de Carne", tamanho: "P (1 KG)", preco: 70.00, min: 1, descricaoResumo: "Rocambole de Carne - P (1 KG)", descricao: "Massa de Batata"},
             { nome: "Rocambole de Carne", tamanho: "M (2 KG)", preco: 140.00, min: 1, descricaoResumo: "Rocambole de Carne - M (2 KG)", descricao: "Massa de Batata"},
             { nome: "Rocambole de Carne", tamanho: "G (3 KG)", preco: 210.00, min: 1, descricaoResumo: "Rocambole de Carne - G (3 KG)", descricao: "Massa de Batata"},
-            { nome: "Rocambole de Frango", tamanho: "P (1 KG)", preco: 70.00, min: 1, descricaoResumo: "Rocambole de Frango - P (1.5 KG)", descricao: "Massa de Batata"},
+            { nome: "Rocambole de Frango", tamanho: "P (1 KG)", preco: 70.00, min: 1, descricaoResumo: "Rocambole de Frango - P (1 KG)", descricao: "Massa de Batata"},
             { nome: "Rocambole de Frango", tamanho: "M (2 KG)", preco: 140.00, min: 1, descricaoResumo: "Rocambole de Frango - M (2 KG)", descricao: "Massa de Batata"},
             { nome: "Rocambole de Frango", tamanho: "G (3 KG)", preco: 210.00, min: 1, descricaoResumo: "Rocambole de Frango - G (3 KG)", descricao: "Massa de Batata"},
+            { nome: "🎄Salpicão de Frango", tamanho: "P (1 KG)", preco: 80.00, min: 1, descricaoResumo: "Salpicão de Frango - P (1 KG)", descricao: "Massa de Batata"},
+            { nome: "🎄Salpicão de Frango", tamanho: "M (2 KG)", preco: 160.00, min: 1, descricaoResumo: "Salpicão de Frango - M (2 KG)", descricao: "Massa de Batata"},
+            { nome: "🎄Salpicão de Frango", tamanho: "G (3 KG)", preco: 240.00, min: 1, descricaoResumo: "Salpicão de Frango - G (3 KG)", descricao: "Massa de Batata"},
             { nome: "Torta Salgada de Bacalhau", tamanho: "P (1 KG)", preco: 120.00, min: 1, descricaoResumo: "Torta Salgada de Bacalhau - P (1 KG)", descricao: ""},
             { nome: "Torta Salgada de Bacalhau", tamanho: "M (2 KG)", preco: 240.00, min: 1, descricaoResumo: "Torta Salgada de Bacalhau - M (2 KG)", descricao: ""},
             { nome: "Torta Salgada de Bacalhau", tamanho: "G (3 KG)", preco: 360.00, min: 1, descricaoResumo: "Torta Salgada de Bacalhau - G (3 KG)", descricao: ""},
@@ -1064,7 +1081,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÃO DE CRIAÇÃO DE TABELAS - AJUSTADA (value="0")
+        // FUNÇÃO DE CRIAÇÃO DE TABELAS - CORRIGIDA (Nova verificação de erro)
         // -----------------------------------------------------
         function criarTabelaGrupo(grupo, idTabela, nomeGrupo) {
             const tbody = document.getElementById(idTabela).querySelector('tbody');
@@ -1104,19 +1121,16 @@
                     }
                     
                     if (item.groupKey === grupoAtual && i < grupo.length - 1 && grupo[i+1].groupKey === grupoAtual) {
-                                     tr.classList.add('item-group-active');
+                                            tr.classList.add('item-group-active');
                     }
                 }
                 
-                // ***************************************************************
-                // ALTERAÇÃO 1: Define o valor padrão do input como "0"
-                // ***************************************************************
                 const inputHtml = `<input type="number" value="0" data-min="${item.min || 1}" data-preco="${item.preco}" data-resumo="${item.descricaoResumo}" data-grupo="${nomeGrupo}" data-item-id="${itemId}" class="quantidade-input">`;
 
                 let erroHtml = '';
-                // Verifica se é uma das categorias que deve usar o erro individual
-                const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-                const isIndividualMinCheck = gruposComMinimoIndividual.includes(nomeGrupo) && (item.min && item.min > 1);
+                // Verifica se é Doces/Salgados OU se é o Mini Cookie (que tem min: 20)
+                const isMiniCookie = itemId === MINI_COOKIE_ID;
+                const isIndividualMinCheck = (gruposComMinimoIndividual.includes(nomeGrupo) && (item.min && item.min > 1)) || isMiniCookie;
                 
                 if (isIndividualMinCheck) {
                     erroHtml = `<div class="erro-item-unico">Mín ${item.min} Unid.</div>`; // Display será controlado pelo JS
@@ -1140,7 +1154,7 @@
                                 ${erroHtml}
                             </div>
                         </td>
-                    `;
+                        `;
                 } else {
                     // CÓDIGO PARA DOCES, SALGADOS FRITOS, FORNO, VEGETARIANOS (4 COLUNAS VISÍVEIS)
                     celulasComuns = `
@@ -1156,7 +1170,7 @@
                                 ${erroHtml}
                             </div>
                         </td>
-                    `;
+                        `;
                 }
 
                 // Conteúdo para tabelas AGRUPADAS (Bolos, Pratos Salgados)
@@ -1240,7 +1254,7 @@
         }
         
         // -----------------------------------------------------
-        // LÓGICA DE CUPOM - AJUSTADA COM A NOVA REGRA DO COOKIES10
+        // LÓGICA DE CUPOM - MANTIDA
         // -----------------------------------------------------
         
         function limparCupom() {
@@ -1264,8 +1278,7 @@
             const cookiesGrupos = ["Cookies"]; 
             let hasCookieItem = false;
             
-            // Lista de grupos que usam a validação de mínimo individual
-            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
+            
             let temErroDeMinimo = false; 
 
             document.querySelectorAll(".quantidade-input").forEach(input => {
@@ -1274,8 +1287,13 @@
                 const quantidade = parseInt(input.value) || 0; 
                 const preco = parseFloat(input.getAttribute("data-preco")) || 0;
                 const min = parseInt(input.getAttribute("data-min")) || 1;
+                const itemId = input.getAttribute("data-item-id");
                 
-                const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
+                // Checagem se é o Mini Cookie ou Doces/Salgados
+                const isMiniCookieCheck = itemId === MINI_COOKIE_ID;
+                const isDocesSalgadosCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
+
+                const isIndividualMinCheck = isDocesSalgadosCheck || isMiniCookieCheck;
                 const isItemValido = quantidade >= min;
                 
                 // Verifica erros de mínimo para não incluir o item no total bruto (apenas se a quantidade for > 0)
@@ -1284,8 +1302,8 @@
                 }
 
                 if (quantidade > 0 && (!isIndividualMinCheck || isItemValido)) {
-                     const totalItem = quantidade * preco;
-                     totalBrutoPedido += totalItem; // Total de todo o pedido (válido para o FAVU10)
+                    const totalItem = quantidade * preco;
+                    totalBrutoPedido += totalItem; // Total de todo o pedido (válido para o FAVU10)
                 }
 
                 if (cookiesGrupos.includes(grupo)) {
@@ -1473,7 +1491,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL - MANTIDA
+        // FUNÇÃO DE ATUALIZAÇÃO DO TOTAL - CORRIGIDA
         // -----------------------------------------------------
         function atualizarTotal() {
             let totalBruto = 0;
@@ -1490,8 +1508,7 @@
             const totaisPorGrupo = {};
 
             // Lista de grupos que usam a validação de mínimo individual
-            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-
+            
             document.querySelectorAll(".quantidade-input").forEach(input => {
                 const quantidade = parseInt(input.value) || 0;
                 const min = parseInt(input.getAttribute("data-min")) || 1;
@@ -1503,8 +1520,11 @@
                 const erroElemento = input.closest('.quantidade-container').querySelector('.erro-item-unico');
                 const idTabela = `tabela-${grupo.toLowerCase().replace(/\s/g, '-')}`;
                 
-                // VERIFICAÇÃO DE MÍNIMO INDIVIDUAL
-                const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && min > 1; 
+                // Checagem de Mínimo Individual para Doces/Salgados OU Mini Cookie
+                const isMiniCookie = itemId === MINI_COOKIE_ID;
+                const isDocesSalgadosCheck = gruposComMinimoIndividual.includes(grupo) && min > 1;
+
+                const isIndividualMinCheck = isDocesSalgadosCheck || isMiniCookie; 
 
                 // 1. Soma a quantidade no total do grupo
                 if (!totaisPorGrupo[grupo]) {
@@ -1514,7 +1534,6 @@
                 totaisPorGrupo[grupo].items.push({ input, quantidade, min, preco, descricaoResumo, itemId, grupo });
 
                 // 2. Validação MÍNIMO INDIVIDUAL (Apenas exibe o erro visual na tabela principal)
-                // CORRIGIDO: Só verifica se a quantidade for maior que zero
                 if (isIndividualMinCheck && quantidade > 0) {
                     if (quantidade < min) {
                         // EXIBE MENSAGEM DE ERRO
@@ -1558,23 +1577,25 @@
 
                 // Adiciona itens válidos ao subtotal
                 infoGrupo.items.forEach(item => {
-                    const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+                    // Checagem de Mínimo Individual para Doces/Salgados OU Mini Cookie
+                    const isMiniCookie = item.itemId === MINI_COOKIE_ID;
+                    const isDocesSalgadosCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+
+                    const isIndividualMinCheck = isDocesSalgadosCheck || isMiniCookie;
                     const isItemValido = item.quantidade >= item.min;
                     
                     if (item.quantidade > 0) {
                         let shouldIncludeInTotal = true;
                         
-                        // Checa o erro individual *apenas* para categorias Doces/Salgados Fritos/Forno/Vegetarianos
-                        // CORRIGIDO: A verificação de erro individual foi separada para garantir que o erro só seja marcado 
-                        // se a quantidade for > 0 E < min.
-                        if (isIndividualMinCheck && !isItemValido) {
-                             shouldIncludeInTotal = false;
-                             temErroDeMinimo = true; // Marca erro se falhar no min individual
+                        // Checa o erro individual (Mini Cookie ou Doces/Salgados)
+                        if (isIndividualMinCheck && !isItemValido) { 
+                                 shouldIncludeInTotal = false;
+                                 temErroDeMinimo = true; // Marca erro se falhar no min individual
                         }
                         
                         // Checa o erro de grupo para Cookies (ou outros grupos com minTotal > 0)
                         if (minTotal > 0 && !grupoValido) {
-                             shouldIncludeInTotal = false; // Marca erro se falhar no min de grupo
+                                 shouldIncludeInTotal = false; // Marca erro se falhar no min de grupo
                         }
                         
                         if (shouldIncludeInTotal) {
@@ -1617,10 +1638,10 @@
                             </div>
                             <div class="resumo-item-input-group">
                                 <input type="number" 
-                                             min="0" 
-                                             value="${item.quantidade}" 
-                                             data-item-id="${item.itemId}" 
-                                             onblur="atualizarQuantidadeDireta(this)">
+                                            min="0" 
+                                            value="${item.quantidade}" 
+                                            data-item-id="${item.itemId}" 
+                                            onblur="atualizarQuantidadeDireta(this)">
                                 un.
                             </div>
                             <div class="resumo-item-actions">
@@ -1634,10 +1655,10 @@
             // 2. Atualiza o total exibido no Pop-up (incluindo desconto se houver)
             if (descontoTotal > 0) {
                  resumoTotalPopup.innerHTML = `
-                     <div class="resumo-total-line">SUBTOTAL: R$ ${totalBrutoFormatado}</div>
-                     <div class="resumo-total-line total-com-desconto">DESCONTO CUPOM: R$ ${descontoTotal.toFixed(2).replace('.', ',')}</div>
-                     <div class="resumo-total">TOTAL: R$ ${totalLiquidoFormatado}</div>
-                     `;
+                    <div class="resumo-total-line">SUBTOTAL: R$ ${totalBrutoFormatado}</div>
+                    <div class="resumo-total-line total-com-desconto">DESCONTO CUPOM: R$ ${descontoTotal.toFixed(2).replace('.', ',')}</div>
+                    <div class="resumo-total">TOTAL: R$ ${totalLiquidoFormatado}</div>
+                    `;
             } else {
                  resumoTotalPopup.textContent = `TOTAL: R$ ${totalBrutoFormatado}`;
                  // Garante que o campo de cupom não mantenha a mensagem de sucesso se o total for 0
@@ -1669,7 +1690,7 @@
         }
         
         // -----------------------------------------------------
-        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - CORRIGIDA (2 BLOCOS)
+        // FUNÇÕES POPUP E CONFIRMAR PEDIDO - CORRIGIDA
         // -----------------------------------------------------
         function abrirResumoPopup() {
             // Garante que a mensagem do cupom seja exibida corretamente ao abrir
@@ -1742,9 +1763,7 @@
             const gruposResumo = {}; 
             const totaisPorGrupo = {};
 
-            // Lista de grupos que usam a validação de mínimo individual
-            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-
+            
             // 1. Preenche totaisPorGrupo (lógica repetida de atualizarTotal para validação e resumo)
             document.querySelectorAll(".quantidade-input").forEach(input => {
                 const quantidade = parseInt(input.value) || 0;
@@ -1752,12 +1771,13 @@
                 const preco = parseFloat(input.getAttribute("data-preco")) || 0;
                 const descricaoResumo = input.getAttribute("data-resumo");
                 const grupo = input.getAttribute("data-grupo");
+                const itemId = input.getAttribute("data-item-id");
                 
                 if (!totaisPorGrupo[grupo]) {
                     totaisPorGrupo[grupo] = { quantidade: 0, items: [] };
                 }
                 totaisPorGrupo[grupo].quantidade += quantidade;
-                totaisPorGrupo[grupo].items.push({ quantidade, min, preco, descricaoResumo, grupo });
+                totaisPorGrupo[grupo].items.push({ quantidade, min, preco, descricaoResumo, grupo, itemId });
             });
 
             // 2. Valida e Calcula o Total Bruto para o WhatsApp
@@ -1773,16 +1793,21 @@
                 }
 
                 infoGrupo.items.forEach(item => {
-                    const isIndividualMinCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+                    // Checagem de Mínimo Individual para Doces/Salgados OU Mini Cookie
+                    const isMiniCookie = item.itemId === MINI_COOKIE_ID;
+                    const isDocesSalgadosCheck = gruposComMinimoIndividual.includes(grupo) && item.min > 1;
+
+                    const isIndividualMinCheck = isDocesSalgadosCheck || isMiniCookie;
                     const isItemValido = item.quantidade >= item.min;
 
                     let shouldIncludeInTotal = true;
 
-                    // CORRIGIDO: Agora só marca erro se a quantidade for maior que zero E menor que o mínimo.
+                    // Checagem Individual
                     if (item.quantidade > 0 && isIndividualMinCheck && !isItemValido) { 
-                         shouldIncludeInTotal = false;
-                         temErroDeMinimo = true;
+                                 shouldIncludeInTotal = false;
+                                 temErroDeMinimo = true;
                     }
+                    // Checagem de Grupo
                     if (minTotal > 0 && !grupoValido) {
                         shouldIncludeInTotal = false;
                     }
@@ -1799,7 +1824,7 @@
                 });
             }
             
-            // ************ VALIDAÇÃO DE BLOQUEIO CORRIGIDA ************
+            // ************ VALIDAÇÃO DE BLOQUEIO ************
             if (totalPedido === 0) {
                 alert("Seu pedido está vazio. Adicione itens para confirmar.");
                 fecharPopup();
@@ -1867,15 +1892,10 @@
 
             // 2. Evento para atualizar o total (mantido como input para a tabela principal)
             
-            // Lista de grupos que usam a validação de mínimo individual (REPETIDA AQUI)
-            const gruposComMinimoIndividual = ["Doces", "Salgados Fritos", "Salgados Assados", "Salgados Vegetarianos"];
-
             document.querySelectorAll(".quantidade-input").forEach(input => {
                 input.addEventListener("input", atualizarTotal);
                 
-                // ***************************************************************
-                // ALTERAÇÃO 2: Ajuste no evento blur para manter o valor "0"
-                // ***************************************************************
+                // Ajuste no evento blur para manter o valor "0"
                 input.addEventListener("blur", function() {
                     const quantidade = parseInt(this.value) || 0;
                     const min = parseInt(this.getAttribute("data-min")) || 1;
